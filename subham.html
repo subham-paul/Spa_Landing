@@ -1,0 +1,3233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Wellness — Sanctuary of Serenity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=Great+Vibes&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ── CUSTOM CURSOR ─────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      cursor: none;
+    }
+
+    #cursor {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: width .2s, height .2s, opacity .2s;
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translate(-50%, -50%);
+      transition: width .35s, height .35s, transform .08s ease, border-color .3s;
+    }
+
+    body:hover #cursor {
+      opacity: 1;
+    }
+
+    a:hover~#cursor,
+    button:hover~#cursor {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ── VARIABLES ─────────────────────────────────────── */
+    :root {
+      --cream: #faf6f0;
+      --ivory: #f2ece2;
+      --sand: #e8dcc8;
+      --warm: #c9b48e;
+      --gold: #b8935a;
+      --gold2: #d4a96a;
+      --bronze: #8b6340;
+      --forest: #2c3d2e;
+      --forest2: #3a5140;
+      --moss: #5a7a5c;
+      --dark: #1a1a18;
+      --charcoal: #2e2e2a;
+      --text: #3d3830;
+      --muted: #7a7060;
+      --white: #ffffff;
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.18);
+      --shadow-gold: 0 8px 40px rgba(184, 147, 90, 0.25);
+      --shadow-dark: 0 20px 60px rgba(26, 26, 24, 0.35);
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ── BASE ──────────────────────────────────────────── */
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .script {
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .5rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--forest);
+      line-height: 1.15;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .divider-ornament {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0 2rem;
+    }
+
+    .divider-ornament::before,
+    .divider-ornament::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--warm), transparent);
+    }
+
+    .divider-ornament span {
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: var(--white);
+      border: none;
+      padding: .85rem 2.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: none;
+    }
+
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--bronze), var(--gold));
+      opacity: 0;
+      transition: opacity .4s;
+    }
+
+    .btn-gold:hover::before {
+      opacity: 1;
+    }
+
+    .btn-gold span {
+      position: relative;
+      z-index: 1;
+      color: var(--white);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-gold);
+      color: var(--white);
+    }
+
+    .btn-outline-gold {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+      padding: .85rem 2.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      border-radius: 0;
+      transition: var(--transition);
+      cursor: none;
+    }
+
+    .btn-outline-gold:hover {
+      background: var(--gold);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ─────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: .4;
+    }
+
+    /* ── NAVBAR ────────────────────────────────────────── */
+    #mainNav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 9000;
+      padding: 1.4rem 0;
+      transition: var(--transition);
+    }
+
+    #mainNav.scrolled {
+      background: rgba(250, 246, 240, 0.95);
+      backdrop-filter: blur(20px);
+      padding: .8rem 0;
+      box-shadow: 0 2px 30px rgba(0, 0, 0, .08);
+    }
+
+    .navbar-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--white) !important;
+      letter-spacing: .08em;
+      transition: color .3s;
+    }
+
+    #mainNav.scrolled .navbar-brand {
+      color: var(--forest) !important;
+    }
+
+    .navbar-brand .script {
+      font-size: 2rem;
+      color: var(--gold);
+    }
+
+    .nav-link {
+      font-family: 'Jost', sans-serif;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .85) !important;
+      padding: .4rem 1rem !important;
+      transition: color .3s;
+    }
+
+    #mainNav.scrolled .nav-link {
+      color: var(--text) !important;
+    }
+
+    .nav-link:hover {
+      color: var(--gold) !important;
+    }
+
+    .nav-book-btn {
+      background: var(--gold);
+      color: var(--white) !important;
+      padding: .5rem 1.4rem !important;
+    }
+
+    .nav-book-btn:hover {
+      background: var(--bronze);
+    }
+
+    /* ── HERO ──────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--dark);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=1800&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center 20%;
+      opacity: .65;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+
+    #hero:hover .hero-bg {
+      transform: scale(1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(26, 26, 24, .8) 0%, rgba(44, 61, 46, .5) 60%, rgba(26, 26, 24, .3) 100%);
+    }
+
+    .hero-botanical {
+      position: absolute;
+      right: -80px;
+      bottom: -40px;
+      width: 500px;
+      opacity: .08;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(184, 147, 90, .4);
+      padding: .4rem 1.2rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      color: var(--gold);
+      font-style: italic;
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-family: 'Jost', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .7);
+      max-width: 420px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      color: rgba(255, 255, 255, .5);
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollAnim 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollAnim {
+
+      0%,
+      100% {
+        opacity: .3;
+        transform: scaleY(.5) translateY(0)
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(1) translateY(8px)
+      }
+    }
+
+    .hero-float-card {
+      position: absolute;
+      right: 8%;
+      bottom: 15%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 1.5rem 2rem;
+      z-index: 3;
+    }
+
+    .hero-float-card .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      font-weight: 300;
+    }
+
+    .hero-float-card p {
+      font-size: .75rem;
+      color: rgba(255, 255, 255, .7);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    /* ── STATS BAR ─────────────────────────────────────── */
+    #stats {
+      background: var(--forest);
+      padding: 2.5rem 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 0 1.5rem;
+      border-right: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      color: var(--gold);
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .55);
+      margin-top: .3rem;
+    }
+
+    .stat-icon {
+      font-size: .9rem;
+      color: var(--gold);
+      margin-bottom: .5rem;
+    }
+
+    /* ── SERVICES ──────────────────────────────────────── */
+    #services {
+      padding: 7rem 0;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #services::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(184, 147, 90, .06) 0%, transparent 70%);
+    }
+
+    .service-card {
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: none;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      transform: scaleX(0);
+      transition: transform .4s;
+    }
+
+    .service-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .12);
+    }
+
+    .service-img {
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s;
+    }
+
+    .service-card:hover .service-img img {
+      transform: scale(1.08);
+    }
+
+    .service-body {
+      padding: 1.8rem;
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: .9rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-body h4 {
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--forest);
+      margin-bottom: .5rem;
+    }
+
+    .service-body p {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .service-link {
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 500;
+      transition: gap .3s;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1rem;
+    }
+
+    .service-link:hover {
+      gap: .9rem;
+      color: var(--bronze);
+    }
+
+    /* ── ABOUT ─────────────────────────────────────────── */
+    #about {
+      padding: 7rem 0;
+      background: var(--ivory);
+      overflow: hidden;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-main {
+      width: 100%;
+      height: 580px;
+      object-fit: cover;
+    }
+
+    .about-img-accent {
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 220px;
+      height: 280px;
+      object-fit: cover;
+      border: 8px solid var(--cream);
+      box-shadow: var(--shadow-dark);
+    }
+
+    .about-badge {
+      position: absolute;
+      top: 40px;
+      left: -30px;
+      background: var(--forest);
+      color: var(--white);
+      padding: 1.5rem;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .about-badge .big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .about-badge small {
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+
+    .about-text p {
+      font-family: 'Jost', sans-serif;
+      font-size: .95rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .about-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-feature-icon {
+      width: 50px;
+      height: 50px;
+      min-width: 50px;
+      border: 1px solid var(--sand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    .about-feature h6 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--forest);
+      margin-bottom: .2rem;
+    }
+
+    .about-feature p {
+      font-size: .82rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ── PACKAGES ──────────────────────────────────────── */
+    #packages {
+      padding: 7rem 0;
+      background: var(--forest);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #packages::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    #packages .section-title {
+      color: var(--cream);
+    }
+
+    .pkg-card {
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: none;
+    }
+
+    .pkg-img {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pkg-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s;
+    }
+
+    .pkg-card:hover .pkg-img img {
+      transform: scale(1.1);
+    }
+
+    .pkg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 26, 24, .9), transparent);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+    }
+
+    .pkg-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      padding: .3rem .8rem;
+      margin-bottom: .8rem;
+    }
+
+    .pkg-overlay h3 {
+      font-size: 1.8rem;
+      color: var(--white);
+      font-weight: 300;
+      margin-bottom: .3rem;
+    }
+
+    .pkg-overlay .discount {
+      font-size: .85rem;
+      color: var(--gold2);
+      letter-spacing: .1em;
+    }
+
+    .pkg-card:hover .pkg-overlay {
+      background: linear-gradient(to top, rgba(44, 61, 46, .95), rgba(44, 61, 46, .4));
+    }
+
+    .pkg-arrow {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: var(--transition);
+    }
+
+    .pkg-card:hover .pkg-arrow {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── WHY CHOOSE US ─────────────────────────────────── */
+    #why {
+      padding: 7rem 0;
+      background: var(--cream);
+    }
+
+    .why-card {
+      background: var(--white);
+      padding: 2.5rem;
+      border-bottom: 3px solid transparent;
+      transition: var(--transition);
+      cursor: none;
+      position: relative;
+    }
+
+    .why-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--forest2) 100%);
+      opacity: 0;
+      transition: opacity .4s;
+      z-index: 0;
+    }
+
+    .why-card:hover {
+      border-bottom-color: var(--gold);
+      box-shadow: var(--shadow-gold);
+      transform: translateY(-5px);
+    }
+
+    .why-card:hover::before {
+      opacity: 1;
+    }
+
+    .why-card>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .why-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, rgba(184, 147, 90, .15), rgba(184, 147, 90, .05));
+      border: 1px solid rgba(184, 147, 90, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .why-card:hover .why-icon {
+      background: rgba(184, 147, 90, .2);
+      border-color: var(--gold2);
+      color: var(--gold2);
+    }
+
+    .why-card h5 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--forest);
+      margin-bottom: .7rem;
+      transition: color .3s;
+    }
+
+    .why-card:hover h5 {
+      color: var(--cream);
+    }
+
+    .why-card p {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      transition: color .3s;
+    }
+
+    .why-card:hover p {
+      color: rgba(250, 246, 240, .7);
+    }
+
+    /* ── THERAPISTS ────────────────────────────────────── */
+    #therapists {
+      padding: 7rem 0;
+      background: var(--ivory);
+    }
+
+    .therapist-card {
+      text-align: center;
+      cursor: none;
+    }
+
+    .therapist-img-wrap {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .therapist-img-wrap img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      object-position: top;
+      filter: grayscale(20%);
+      transition: filter .4s, transform .5s;
+    }
+
+    .therapist-card:hover .therapist-img-wrap img {
+      filter: grayscale(0);
+      transform: scale(1.03);
+    }
+
+    .therapist-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(44, 61, 46, .8), transparent);
+      opacity: 0;
+      transition: opacity .4s;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 1.5rem;
+    }
+
+    .therapist-card:hover .therapist-overlay {
+      opacity: 1;
+    }
+
+    .therapist-socials a {
+      color: rgba(255, 255, 255, .8);
+      margin: 0 .4rem;
+      font-size: 1rem;
+      transition: color .2s;
+    }
+
+    .therapist-socials a:hover {
+      color: var(--gold);
+    }
+
+    .therapist-card h5 {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--forest);
+    }
+
+    .therapist-card .role {
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .3rem;
+    }
+
+    .therapist-card .exp {
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    .therapist-tag {
+      display: inline-block;
+      background: var(--sand);
+      color: var(--bronze);
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .2rem .6rem;
+      margin-top: .5rem;
+    }
+
+    /* ── TESTIMONIALS ──────────────────────────────────── */
+    #testimonials {
+      padding: 7rem 0;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #testimonials::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1800&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      opacity: .08;
+    }
+
+    .testi-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 2.5rem;
+      transition: var(--transition);
+      cursor: none;
+      position: relative;
+    }
+
+    .testi-card::before {
+      content: '\201C';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      color: var(--gold);
+      opacity: .15;
+      position: absolute;
+      top: -1rem;
+      left: 1rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .testi-card:hover {
+      border-color: rgba(184, 147, 90, .4);
+      transform: translateY(-5px);
+    }
+
+    .testi-stars {
+      color: var(--gold);
+      font-size: .85rem;
+      margin-bottom: 1rem;
+      letter-spacing: .1em;
+    }
+
+    .testi-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: rgba(255, 255, 255, .85);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .testi-author img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+    }
+
+    .testi-author strong {
+      display: block;
+      color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: .9rem;
+      font-weight: 500;
+    }
+
+    .testi-author span {
+      color: rgba(255, 255, 255, .45);
+      font-size: .75rem;
+    }
+
+    .testi-nav {
+      display: flex;
+      gap: .7rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    .testi-nav button {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      background: transparent;
+      color: rgba(255, 255, 255, .6);
+      transition: var(--transition);
+      cursor: none;
+    }
+
+    .testi-nav button:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: white;
+    }
+
+    /* ── GALLERY ───────────────────────────────────────── */
+    #gallery {
+      padding: 7rem 0;
+      background: var(--cream);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 8px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+      cursor: none;
+    }
+
+    .gallery-item:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .gallery-item:nth-child(4) {
+      grid-column: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 200px;
+      transition: transform .6s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.07);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(44, 61, 46, .6);
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .3s;
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+
+    .gallery-zoom {
+      color: white;
+      font-size: 1.5rem;
+      border: 1.5px solid rgba(255, 255, 255, .7);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── MEMBERSHIP ────────────────────────────────────── */
+    #membership {
+      padding: 7rem 0;
+      background: var(--ivory);
+    }
+
+    .plan-card {
+      border: 1px solid var(--sand);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      transition: var(--transition);
+      cursor: none;
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .plan-card.featured {
+      background: var(--forest);
+      border-color: transparent;
+    }
+
+    .plan-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: 1.2rem;
+      right: -2rem;
+      background: var(--gold);
+      color: white;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .3rem 2.5rem;
+      transform: rotate(35deg);
+    }
+
+    .plan-card:hover:not(.featured) {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-gold);
+      transform: translateY(-8px);
+    }
+
+    .plan-card.featured:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(44, 61, 46, .4);
+    }
+
+    .plan-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--forest);
+      margin-bottom: .5rem;
+    }
+
+    .plan-card.featured .plan-name {
+      color: var(--cream);
+    }
+
+    .plan-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .plan-price sup {
+      font-size: 1.5rem;
+      vertical-align: top;
+      margin-top: .8rem;
+    }
+
+    .plan-price span {
+      font-family: 'Jost', sans-serif;
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .plan-card.featured .plan-price span {
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .plan-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--sand);
+      margin: 1.5rem auto;
+    }
+
+    .plan-card.featured .plan-divider {
+      background: rgba(255, 255, 255, .2);
+    }
+
+    .plan-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+
+    .plan-features li {
+      font-size: .85rem;
+      padding: .55rem 0;
+      border-bottom: 1px solid var(--ivory);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .plan-card.featured .plan-features li {
+      border-bottom-color: rgba(255, 255, 255, .08);
+      color: rgba(255, 255, 255, .7);
+    }
+
+    .plan-features li i {
+      color: var(--gold);
+      font-size: .7rem;
+    }
+
+    .plan-features li.unavail {
+      opacity: .4;
+    }
+
+    .plan-features li.unavail i {
+      color: var(--muted);
+    }
+
+    /* ── GIFT CARD ─────────────────────────────────────── */
+    #giftcard {
+      padding: 7rem 0;
+      background: var(--forest);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gift-card-visual {
+      background: linear-gradient(135deg, var(--forest2), var(--dark));
+      border: 1px solid rgba(184, 147, 90, .3);
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gift-card-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('1779217171406_image.png') center/cover;
+      opacity: .1;
+    }
+
+    .gift-card-visual .script {
+      font-size: 4rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .gift-card-visual h2 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--white);
+    }
+
+    .gift-card-visual p {
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .gift-orb {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184, 147, 90, .2), transparent);
+    }
+
+    .gift-orb2 {
+      position: absolute;
+      bottom: -40px;
+      left: 30%;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90, 122, 92, .3), transparent);
+    }
+
+    .gift-amounts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin: 2rem 0;
+    }
+
+    .gift-amount-btn {
+      padding: .6rem 1.4rem;
+      border: 1.5px solid rgba(255, 255, 255, .2);
+      background: transparent;
+      color: rgba(255, 255, 255, .7);
+      font-family: 'Jost', sans-serif;
+      font-size: .85rem;
+      transition: var(--transition);
+      cursor: none;
+    }
+
+    .gift-amount-btn.active,
+    .gift-amount-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── BLOG ──────────────────────────────────────────── */
+    #blog {
+      padding: 7rem 0;
+      background: var(--cream);
+    }
+
+    .blog-card {
+      background: var(--white);
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: none;
+    }
+
+    .blog-card:hover {
+      box-shadow: 0 15px 50px rgba(0, 0, 0, .1);
+      transform: translateY(-6px);
+    }
+
+    .blog-img {
+      height: 240px;
+      overflow: hidden;
+    }
+
+    .blog-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s;
+    }
+
+    .blog-card:hover .blog-img img {
+      transform: scale(1.07);
+    }
+
+    .blog-body {
+      padding: 2rem;
+    }
+
+    .blog-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: .8rem;
+    }
+
+    .blog-tag {
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(184, 147, 90, .3);
+      padding: .2rem .7rem;
+    }
+
+    .blog-date {
+      font-size: .75rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+
+    .blog-body h4 {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--forest);
+      line-height: 1.3;
+      margin-bottom: .8rem;
+    }
+
+    .blog-body p {
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .blog-read {
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1rem;
+      transition: gap .3s;
+    }
+
+    .blog-read:hover {
+      gap: 1rem;
+      color: var(--bronze);
+    }
+
+    /* ── BOOKING ───────────────────────────────────────── */
+    #booking {
+      padding: 7rem 0;
+      background: var(--ivory);
+    }
+
+    .booking-wrap {
+      background: var(--white);
+      box-shadow: var(--shadow-dark);
+    }
+
+    .booking-left {
+      background: var(--forest);
+      padding: 4rem;
+      color: var(--cream);
+    }
+
+    .booking-left h2 {
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .booking-left h2 em {
+      color: var(--gold);
+    }
+
+    .booking-left p {
+      color: rgba(250, 246, 240, .65);
+      font-size: .9rem;
+      line-height: 1.8;
+      margin-top: 1rem;
+    }
+
+    .booking-info {
+      margin-top: 3rem;
+    }
+
+    .booking-info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .booking-info-item i {
+      width: 40px;
+      height: 40px;
+      background: rgba(184, 147, 90, .15);
+      border: 1px solid rgba(184, 147, 90, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: .9rem;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .booking-info-item span {
+      font-size: .85rem;
+      color: rgba(255, 255, 255, .65);
+    }
+
+    .booking-right {
+      padding: 4rem;
+    }
+
+    .form-control,
+    .form-select {
+      border: 1px solid var(--sand);
+      border-radius: 0;
+      padding: .8rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .88rem;
+      color: var(--text);
+      background: var(--cream);
+      transition: border-color .3s;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184, 147, 90, .1);
+      background: var(--white);
+    }
+
+    .form-label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .4rem;
+    }
+
+    /* ── INSTAGRAM ─────────────────────────────────────── */
+    #instagram {
+      padding: 5rem 0;
+      background: var(--cream);
+    }
+
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
+    }
+
+    .insta-item {
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1;
+      cursor: none;
+    }
+
+    .insta-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s;
+    }
+
+    .insta-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .insta-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(184, 147, 90, .7);
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .3s;
+    }
+
+    .insta-item:hover .insta-overlay {
+      opacity: 1;
+    }
+
+    .insta-overlay i {
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .insta-handle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--gold);
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    /* ── FAQ ───────────────────────────────────────────── */
+    #faq {
+      padding: 7rem 0;
+      background: var(--forest);
+    }
+
+    #faq .section-title {
+      color: var(--cream);
+    }
+
+    .accordion-item {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .08) !important;
+      margin-bottom: .6rem;
+      border-radius: 0 !important;
+    }
+
+    .accordion-button {
+      background: transparent !important;
+      color: var(--cream) !important;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      padding: 1.4rem 1.8rem;
+      box-shadow: none !important;
+    }
+
+    .accordion-button::after {
+      filter: invert(1) sepia(1) saturate(2) hue-rotate(0deg);
+    }
+
+    .accordion-button:not(.collapsed) {
+      color: var(--gold) !important;
+    }
+
+    .accordion-body {
+      color: rgba(255, 255, 255, .6);
+      font-size: .88rem;
+      line-height: 1.8;
+      padding: 0 1.8rem 1.5rem;
+    }
+
+    /* ── FOOTER ────────────────────────────────────────── */
+    #footer {
+      background: var(--dark);
+      padding: 5rem 0 0;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand .script {
+      color: var(--gold);
+      font-size: 2.2rem;
+    }
+
+    .footer-desc {
+      font-size: .83rem;
+      color: rgba(255, 255, 255, .4);
+      line-height: 1.8;
+      max-width: 260px;
+    }
+
+    .footer-heading {
+      font-family: 'Jost', sans-serif;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: .7rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, .45);
+      font-size: .83rem;
+      text-decoration: none;
+      transition: color .3s;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .footer-links a::before {
+      content: '—';
+      opacity: 0;
+      transition: opacity .3s, transform .3s;
+      transform: translateX(-5px);
+      font-size: .7rem;
+      color: var(--gold);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-links a:hover::before {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .footer-contact li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, .45);
+      font-size: .83rem;
+    }
+
+    .footer-contact li i {
+      color: var(--gold);
+      margin-top: .2rem;
+    }
+
+    .footer-newsletter input {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .12);
+      color: var(--cream);
+      border-radius: 0;
+      padding: .8rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .84rem;
+    }
+
+    .footer-newsletter input::placeholder {
+      color: rgba(255, 255, 255, .3);
+    }
+
+    .footer-newsletter input:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, .09);
+    }
+
+    .footer-newsletter .btn {
+      background: var(--gold);
+      color: white;
+      border: none;
+      padding: .8rem 1.2rem;
+      border-radius: 0;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: .8rem;
+      margin-top: 1.5rem;
+    }
+
+    .footer-socials a {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, .4);
+      font-size: .85rem;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .footer-socials a:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: white;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .06);
+      padding: 1.5rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer-bottom p {
+      font-size: .75rem;
+      color: rgba(255, 255, 255, .25);
+      margin: 0;
+    }
+
+    /* ── CTA BAND ──────────────────────────────────────── */
+    #cta-band {
+      padding: 6rem 0;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('1779217171406_image.png');
+      background-size: cover;
+      background-position: center;
+      opacity: .12;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .cta-inner h2 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300;
+      color: var(--forest);
+      line-height: 1.15;
+    }
+
+    .cta-inner h2 em {
+      color: var(--gold);
+    }
+
+    /* ── GLASSMORPHISM SERVICE FEATURED ────────────────── */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 2rem;
+    }
+
+    /* ── SCROLL PROGRESS ───────────────────────────────── */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      z-index: 99999;
+      transition: width .1s;
+    }
+
+    /* ── LIGHTBOX ──────────────────────────────────────── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .92);
+      z-index: 99990;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: white;
+      font-size: 2rem;
+      cursor: none;
+      opacity: .7;
+      transition: opacity .2s;
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-item:nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+
+      .gallery-item:nth-child(4) {
+        grid-column: span 1;
+      }
+
+      .insta-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero-float-card {
+        display: none;
+      }
+
+      .about-img-accent {
+        display: none;
+      }
+
+      .about-badge {
+        left: 0;
+      }
+
+      #cursor,
+      #cursor-ring {
+        display: none;
+      }
+
+      body {
+        cursor: auto;
+      }
+    }
+
+    /* ── AOS OVERRIDES ─────────────────────────────────── */
+    [data-aos] {
+      pointer-events: none;
+    }
+
+    [data-aos].aos-animate {
+      pointer-events: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- SCROLL PROGRESS -->
+  <div id="scroll-progress"></div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></span>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════ -->
+  <nav class="navbar navbar-expand-lg" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <span class="script">Aura</span> Wellness
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        style="filter:invert(1)">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center gap-1">
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>
+          <li class="nav-item"><a class="nav-link" href="#therapists">Therapists</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item ms-2"><a class="nav-link nav-book-btn" href="#booking">Book Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <svg class="hero-botanical" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M200 600 Q200 300 100 200 Q50 150 80 80 Q120 20 200 50 Q280 80 280 200 Q300 300 200 600Z" fill="white"
+        opacity=".5" />
+      <path d="M200 500 Q100 400 60 300 Q30 220 80 180 Q140 140 200 200" fill="none" stroke="white" stroke-width="2"
+        opacity=".3" />
+      <circle cx="200" cy="50" r="30" fill="white" opacity=".2" />
+      <circle cx="160" cy="80" r="20" fill="white" opacity=".15" />
+      <circle cx="240" cy="75" r="22" fill="white" opacity=".15" />
+    </svg>
+    <div class="container">
+      <div class="row align-items-center" style="min-height:100vh;">
+        <div class="col-lg-7 hero-content py-5">
+          <div class="hero-eyebrow" data-aos="fade-down" data-aos-delay="100">✦ Sanctuary of Serenity ✦</div>
+          <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
+            Renew Your
+            <em>Mind & Soul</em>
+          </h1>
+          <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">
+            Step into a world where luxury meets tranquility. Aura Wellness offers bespoke treatments crafted to restore
+            your body, calm your mind, and elevate your spirit.
+          </p>
+          <div class="hero-actions" data-aos="fade-up" data-aos-delay="400">
+            <a href="#booking" class="btn-gold"><span>Book A Session</span></a>
+            <a href="#services" class="btn-outline-gold">Explore Services</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-float-card" data-aos="fade-left" data-aos-delay="600">
+      <div class="num">98%</div>
+      <p>Client Satisfaction</p>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     STATS BAR
+═══════════════════════════════════════════════════ -->
+  <section id="stats">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-6 col-md-2 stat-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-icon"><i class="fas fa-leaf"></i></div>
+          <div class="stat-num" data-target="12">0</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="col-6 col-md-2 stat-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-icon"><i class="fas fa-heart"></i></div>
+          <div class="stat-num" data-target="8500">0</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="col-6 col-md-2 stat-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-icon"><i class="fas fa-spa"></i></div>
+          <div class="stat-num" data-target="25">0</div>
+          <div class="stat-label">Expert Therapists</div>
+        </div>
+        <div class="col-6 col-md-2 stat-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="stat-icon"><i class="fas fa-star"></i></div>
+          <div class="stat-num" data-target="98">0</div>
+          <div class="stat-label">% Satisfaction</div>
+        </div>
+        <div class="col-6 col-md-2 stat-item" data-aos="fade-up" data-aos-delay="500">
+          <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+          <div class="stat-num" data-target="16">0</div>
+          <div class="stat-label">Awards Won</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════════════ -->
+  <section id="services">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="section-label">Our Services</div>
+          <h2 class="section-title">Premium Spa &amp; <em>Wellness Services</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.8;">Indulge in a curated collection of holistic
+            treatments designed to rejuvenate every dimension of your well-being.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <!-- Service cards using placeholder images styled via CSS gradients -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card">
+            <div class="service-img">
+              <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&auto=format&fit=crop"
+                alt="Body Massage">
+            </div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fas fa-hands"></i></div>
+              <h4>Body Massage</h4>
+              <p>Relieve deep muscular tension with our signature Swedish and deep-tissue massage therapies.</p>
+              <a href="#booking" class="service-link">Book Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card">
+            <div class="service-img">
+              <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&auto=format&fit=crop"
+                alt="Aromatherapy">
+            </div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fas fa-seedling"></i></div>
+              <h4>Aromatherapy</h4>
+              <p>Harness the healing power of essential oils for profound relaxation and emotional balance.</p>
+              <a href="#booking" class="service-link">Book Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card">
+            <div class="service-img">
+              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&auto=format&fit=crop"
+                alt="Facial Treatment">
+            </div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fas fa-face-smile"></i></div>
+              <h4>Facial Treatment</h4>
+              <p>Rejuvenate with our bespoke facials using organic botanicals tailored to your skin's needs.</p>
+              <a href="#booking" class="service-link">Book Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card">
+            <div class="service-img">
+              <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&auto=format&fit=crop"
+                alt="Hot Stone Therapy">
+            </div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fas fa-fire"></i></div>
+              <h4>Hot Stone Therapy</h4>
+              <p>Smooth heated basalt stones melt away tension and improve circulation from within.</p>
+              <a href="#booking" class="service-link">Book Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card">
+            <div class="service-img">
+              <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&auto=format&fit=crop"
+                alt="Skin Care Ritual">
+            </div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fas fa-spa"></i></div>
+              <h4>Skin Care Ritual</h4>
+              <p>Nourish, hydrate, and radiate with our luxurious skin renewal protocols.</p>
+              <a href="#booking" class="service-link">Book Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card">
+            <div class="service-img">
+              <img src="https://images.unsplash.com/photo-1545579133-99bb5ad189be?w=600&auto=format&fit=crop"
+                alt="Sauna Relaxation">
+            </div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fas fa-water"></i></div>
+              <h4>Sauna Relaxation</h4>
+              <p>Detoxify body and mind in our infrared sauna sanctuary for ultimate renewal.</p>
+              <a href="#booking" class="service-link">Book Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5" data-aos="fade-right">
+          <div class="about-img-wrap">
+            <div style="height:580px;overflow:hidden;position:relative;">
+              <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=900&auto=format&fit=crop"
+                alt="Spa interior" style="width:100%;height:100%;object-fit:cover;">
+              <div class="about-badge">
+                <div class="big">12+</div>
+                <small>Years of<br>Excellence</small>
+              </div>
+            </div>
+            <div class="about-img-accent" style="overflow:hidden;">
+              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&auto=format&fit=crop"
+                alt="Spa candles" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7" data-aos="fade-left">
+          <div class="section-label">About Aura Wellness</div>
+          <h2 class="section-title">A Sanctuary of Peace <em>&amp; Healing</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+          <p class="mb-4" style="color:var(--muted);font-size:.95rem;line-height:1.9;">At Aura Wellness, we believe that
+            true luxury is the harmony of body, mind, and soul. Founded on the principles of holistic healing and
+            mindful living, our sanctuary offers a refuge from the demands of modern life — a place where time slows and
+            restoration begins.</p>
+          <p class="mb-5" style="color:var(--muted);font-size:.95rem;line-height:1.9;">Every treatment is thoughtfully
+            crafted, every detail considered. Our skilled therapists bring years of expertise and genuine care to each
+            session, ensuring your experience is profoundly personal.</p>
+          <div class="row g-4 mb-4">
+            <div class="col-sm-6">
+              <div class="about-feature">
+                <div class="about-feature-icon"><i class="fas fa-leaf"></i></div>
+                <div>
+                  <h6>100% Organic Products</h6>
+                  <p>Only the finest natural ingredients, ethically sourced for your well-being.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="about-feature">
+                <div class="about-feature-icon"><i class="fas fa-certificate"></i></div>
+                <div>
+                  <h6>Certified Therapists</h6>
+                  <p>International certifications and years of hands-on experience.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="about-feature">
+                <div class="about-feature-icon"><i class="fas fa-shield-heart"></i></div>
+                <div>
+                  <h6>Hygienic &amp; Safe</h6>
+                  <p>Highest standards of cleanliness in every treatment room.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="about-feature">
+                <div class="about-feature-icon"><i class="fas fa-calendar-check"></i></div>
+                <div>
+                  <h6>Easy Online Booking</h6>
+                  <p>Reserve your session in minutes from anywhere, anytime.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#booking" class="btn-gold"><span>Discover Our Story</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     PACKAGES / SPECIAL OFFERS
+═══════════════════════════════════════════════════ -->
+  <section id="packages">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="section-label" style="color:var(--gold2);">Special Offers</div>
+          <h2 class="section-title" style="color:var(--cream);">Exclusive <em>Spa Packages</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+          <p style="color:rgba(255,255,255,.5);font-size:.9rem;line-height:1.8;">Curated experiences for every occasion
+            — weekend escapes, romantic retreats, and first-time discoveries.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="pkg-card">
+            <div class="pkg-img">
+              <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=800&auto=format&fit=crop"
+                alt="Weekend Refresh">
+            </div>
+            <div class="pkg-overlay">
+              <span class="pkg-badge">Weekend Special</span>
+              <h3>Weekend Refresh</h3>
+              <div class="discount">✦ Up to 20% Off</div>
+            </div>
+            <div class="pkg-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="pkg-card">
+            <div class="pkg-img">
+              <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=800&auto=format&fit=crop"
+                alt="Couple Bliss">
+            </div>
+            <div class="pkg-overlay">
+              <span class="pkg-badge">Couples Favourite</span>
+              <h3>Couple Bliss</h3>
+              <div class="discount">✦ Up to 25% Off</div>
+            </div>
+            <div class="pkg-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="pkg-card">
+            <div class="pkg-img">
+              <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&auto=format&fit=crop"
+                alt="First Glow Offer">
+            </div>
+            <div class="pkg-overlay">
+              <span class="pkg-badge">New Client</span>
+              <h3>First Glow Offer</h3>
+              <div class="discount">✦ Flat 15% Off</div>
+            </div>
+            <div class="pkg-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5" data-aos="fade-up">
+        <a href="#membership" class="btn-outline-gold" style="border-color:rgba(184,147,90,.5);color:var(--gold2);">View
+          All Packages</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     WHY CHOOSE US
+═══════════════════════════════════════════════════ -->
+  <section id="why">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="section-label">Why Aura</div>
+          <h2 class="section-title">Why Guests <em>Choose Us</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="why-card h-100">
+            <div class="why-icon"><i class="fas fa-leaf"></i></div>
+            <h5>Organic &amp; Natural</h5>
+            <p>We use only premium natural and organic products, free from harmful chemicals, ensuring pure, skin-safe
+              indulgence.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="why-card h-100">
+            <div class="why-icon"><i class="fas fa-user-graduate"></i></div>
+            <h5>Expert &amp; Certified</h5>
+            <p>Our internationally certified therapists bring deep expertise and heartfelt care to every treatment
+              session.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="why-card h-100">
+            <div class="why-icon"><i class="fas fa-gem"></i></div>
+            <h5>Luxury Environment</h5>
+            <p>Every corner of Aura is crafted to evoke calm — from the scent in the air to the texture of the linens.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="why-card h-100">
+            <div class="why-icon"><i class="fas fa-shield-heart"></i></div>
+            <h5>Safe &amp; Hygienic</h5>
+            <p>Hospital-grade sanitation protocols ensure every session is as clean as it is rejuvenating.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="why-card h-100">
+            <div class="why-icon"><i class="fas fa-calendar-check"></i></div>
+            <h5>Seamless Booking</h5>
+            <p>Our intuitive online system lets you reserve your perfect session in seconds, any time of day.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="why-card h-100">
+            <div class="why-icon"><i class="fas fa-infinity"></i></div>
+            <h5>Holistic Approach</h5>
+            <p>We treat the whole person — body, mind, spirit — through integrated wellness rituals and mindful
+              practices.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     THERAPISTS
+═══════════════════════════════════════════════════ -->
+  <section id="therapists">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="section-label">Our Team</div>
+          <h2 class="section-title">Meet Our Expert <em>Therapists</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.8;">Each therapist is handpicked for their skill,
+            intuition, and dedication to your well-being.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="therapist-card">
+            <div class="therapist-img-wrap">
+              <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&auto=format&fit=crop&q=80"
+                alt="Priya Sharma"
+                style="width:100%;height:360px;object-fit:cover;object-position:top;filter:grayscale(20%);transition:filter .4s, transform .5s;">
+              <div class="therapist-overlay">
+                <div class="therapist-socials">
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                  <a href="#"><i class="fab fa-facebook"></i></a>
+                  <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="role">Lead Therapist</div>
+            <h5>Priya Sharma</h5>
+            <div class="exp">9+ Years Experience</div>
+            <span class="therapist-tag">Swedish · Deep Tissue</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="therapist-card">
+            <div class="therapist-img-wrap">
+              <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&auto=format&fit=crop&q=80"
+                alt="Marcus Lei"
+                style="width:100%;height:360px;object-fit:cover;object-position:top;filter:grayscale(20%);transition:filter .4s, transform .5s;">
+              <div class="therapist-overlay">
+                <div class="therapist-socials">
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                  <a href="#"><i class="fab fa-facebook"></i></a>
+                  <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="role">Massage Expert</div>
+            <h5>Marcus Lei</h5>
+            <div class="exp">11+ Years Experience</div>
+            <span class="therapist-tag">Sports · Reflexology</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="therapist-card">
+            <div class="therapist-img-wrap">
+              <img src="https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?w=600&auto=format&fit=crop&q=80"
+                alt="Elena Rossi"
+                style="width:100%;height:360px;object-fit:cover;object-position:top;filter:grayscale(20%);transition:filter .4s, transform .5s;">
+              <div class="therapist-overlay">
+                <div class="therapist-socials">
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                  <a href="#"><i class="fab fa-facebook"></i></a>
+                  <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="role">Skincare Specialist</div>
+            <h5>Elena Rossi</h5>
+            <div class="exp">7+ Years Experience</div>
+            <span class="therapist-tag">Facial · Glow</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+          <div class="therapist-card">
+            <div class="therapist-img-wrap">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&auto=format&fit=crop&q=80"
+                alt="David Nkosi"
+                style="width:100%;height:360px;object-fit:cover;object-position:top;filter:grayscale(20%);transition:filter .4s, transform .5s;">
+              <div class="therapist-overlay">
+                <div class="therapist-socials">
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                  <a href="#"><i class="fab fa-facebook"></i></a>
+                  <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="role">Wellness Therapist</div>
+            <h5>David Nkosi</h5>
+            <div class="exp">9+ Years Experience</div>
+            <span class="therapist-tag">Ayurveda · Yoga</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════════════ -->
+  <section id="testimonials">
+    <div class="container position-relative" style="z-index:1;">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="section-label" style="color:var(--gold2);">Testimonials</div>
+          <h2 class="section-title" style="color:var(--cream);">What Our <em>Clients Say</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+        </div>
+      </div>
+      <div class="row g-4" id="testiRow">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="testi-card h-100">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"Aura Wellness is the most transformative spa experience I have ever had. The
+              therapists are extraordinary, and the ambiance is simply divine."</p>
+            <div class="testi-author">
+              <div
+                style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#8b6340,#c9b48e);flex-shrink:0;display:flex;align-items:center;justify-content:center;border:2px solid var(--gold);">
+                <i class="fas fa-user" style="color:rgba(255,255,255,.6);"></i></div>
+              <div><strong>Emily R.</strong><span>New York, USA</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="testi-card h-100">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"I feel completely renewed after every visit. The couple's package was perfect for our
+              anniversary — truly a hidden paradise in the city."</p>
+            <div class="testi-author">
+              <div
+                style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#3a5140,#5a7a5c);flex-shrink:0;display:flex;align-items:center;justify-content:center;border:2px solid var(--gold);">
+                <i class="fas fa-user" style="color:rgba(255,255,255,.6);"></i></div>
+              <div><strong>James L.</strong><span>London, UK</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="testi-card h-100">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"A perfect place to escape from the chaos of everyday life. The hot stone therapy
+              melted away months of tension in just one session."</p>
+            <div class="testi-author">
+              <div
+                style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#d4a96a,#b8935a);flex-shrink:0;display:flex;align-items:center;justify-content:center;border:2px solid var(--gold);">
+                <i class="fas fa-user" style="color:rgba(255,255,255,.6);"></i></div>
+              <div><strong>Sophie M.</strong><span>Dubai, UAE</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-nav" data-aos="fade-up">
+        <button><i class="fas fa-arrow-left"></i></button>
+        <button><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     GALLERY
+═══════════════════════════════════════════════════ -->
+  <section id="gallery">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="section-label">Our Gallery</div>
+          <h2 class="section-title">Moments of <em>Relaxation</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+        </div>
+      </div>
+      <div class="gallery-grid" data-aos="fade-up">
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=900&auto=format&fit=crop"
+            alt="Spa relaxation" style="width:100%;height:100%;min-height:420px;object-fit:cover;">
+          <div class="gallery-item-overlay">
+            <div class="gallery-zoom"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&auto=format&fit=crop"
+            alt="Massage therapy" style="width:100%;height:100%;min-height:200px;object-fit:cover;">
+          <div class="gallery-item-overlay">
+            <div class="gallery-zoom"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop"
+            alt="Candles and oils" style="width:100%;height:100%;min-height:200px;object-fit:cover;">
+          <div class="gallery-item-overlay">
+            <div class="gallery-zoom"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <div
+            style="width:100%;height:100%;min-height:200px;background:linear-gradient(135deg,#d4a96a,#2c3d2e);display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-fire fa-4x" style="color:rgba(255,255,255,.15);"></i></div>
+          <div class="gallery-item-overlay">
+            <div class="gallery-zoom"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <div
+            style="width:100%;height:100%;min-height:200px;background:linear-gradient(135deg,#8b6340,#5a7a5c);display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-heart fa-4x" style="color:rgba(255,255,255,.15);"></i></div>
+          <div class="gallery-item-overlay">
+            <div class="gallery-zoom"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <div
+            style="width:100%;height:100%;min-height:200px;background:linear-gradient(135deg,#3a5140,#c9b48e);display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-water fa-4x" style="color:rgba(255,255,255,.15);"></i></div>
+          <div class="gallery-item-overlay">
+            <div class="gallery-zoom"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4" data-aos="fade-up">
+        <a href="#" class="btn-outline-gold">View Full Gallery</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     MEMBERSHIP PLANS
+═══════════════════════════════════════════════════ -->
+  <section id="membership">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="section-label">Membership</div>
+          <h2 class="section-title">Choose Your <em>Wellness Plan</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.8;">Commit to your well-being with a membership
+            that rewards regularity and deepens your practice.</p>
+        </div>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="plan-card h-100">
+            <div class="plan-name">Essentials</div>
+            <div class="plan-price"><sup>₹</sup>2,499<span>/month</span></div>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+              <li><i class="fas fa-check-circle"></i> 2 Sessions per month</li>
+              <li><i class="fas fa-check-circle"></i> Access to steam room</li>
+              <li><i class="fas fa-check-circle"></i> 10% off retail products</li>
+              <li><i class="fas fa-check-circle"></i> Birthday treat</li>
+              <li class="unavail"><i class="fas fa-times-circle"></i> Priority booking</li>
+              <li class="unavail"><i class="fas fa-times-circle"></i> Guest passes</li>
+            </ul>
+            <a href="#booking" class="btn-outline-gold d-block text-center">Get Started</a>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="plan-card featured h-100">
+            <div class="plan-name">Aura Luxe</div>
+            <div class="plan-price"><sup>₹</sup>4,999<span>/month</span></div>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+              <li><i class="fas fa-check-circle"></i> 5 Sessions per month</li>
+              <li><i class="fas fa-check-circle"></i> Unlimited steam &amp; sauna</li>
+              <li><i class="fas fa-check-circle"></i> 20% off retail products</li>
+              <li><i class="fas fa-check-circle"></i> Birthday full-day treat</li>
+              <li><i class="fas fa-check-circle"></i> Priority booking</li>
+              <li><i class="fas fa-check-circle"></i> 2 Guest passes/month</li>
+            </ul>
+            <a href="#booking" class="btn-gold d-block text-center"><span>Get Started</span></a>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="plan-card h-100">
+            <div class="plan-name">Platinum</div>
+            <div class="plan-price"><sup>₹</sup>8,999<span>/month</span></div>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+              <li><i class="fas fa-check-circle"></i> Unlimited sessions</li>
+              <li><i class="fas fa-check-circle"></i> All amenities included</li>
+              <li><i class="fas fa-check-circle"></i> 30% off retail products</li>
+              <li><i class="fas fa-check-circle"></i> Monthly gift hamper</li>
+              <li><i class="fas fa-check-circle"></i> VIP priority booking</li>
+              <li><i class="fas fa-check-circle"></i> 5 Guest passes/month</li>
+            </ul>
+            <a href="#booking" class="btn-outline-gold d-block text-center">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     GIFT CARD
+═══════════════════════════════════════════════════ -->
+  <section id="giftcard">
+    <div class="container position-relative" style="z-index:1;">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="section-label" style="color:var(--gold2);">Gift of Wellness</div>
+          <h2 class="section-title" style="color:var(--cream);">Give the Gift of <em>Serenity</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+          <p style="color:rgba(255,255,255,.55);line-height:1.9;margin-bottom:2rem;">The perfect gift for any occasion —
+            birthdays, anniversaries, corporate gestures. Let someone you love experience the magic of Aura Wellness.
+          </p>
+          <div class="gift-amounts">
+            <button class="gift-amount-btn active">₹1,000</button>
+            <button class="gift-amount-btn">₹2,500</button>
+            <button class="gift-amount-btn">₹5,000</button>
+            <button class="gift-amount-btn">₹10,000</button>
+            <button class="gift-amount-btn">Custom</button>
+          </div>
+          <a href="#" class="btn-gold mt-3"><span>Purchase Gift Card</span></a>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="gift-card-visual">
+            <div class="gift-orb"></div>
+            <div class="gift-orb2"></div>
+            <div class="position-relative" style="z-index:1;">
+              <div class="script mb-2" style="color:var(--gold);font-size:3rem;">Aura Wellness</div>
+              <h2 style="color:var(--cream);font-size:2rem;font-weight:300;">Gift Card</h2>
+              <div style="width:100%;height:1px;background:rgba(184,147,90,.3);margin:1.5rem 0;"></div>
+              <p style="color:rgba(255,255,255,.5);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;">A
+                Treasure of Tranquility</p>
+              <div style="margin-top:2rem;display:flex;justify-content:space-between;align-items:flex-end;">
+                <div>
+                  <div
+                    style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.3rem;">
+                    Value</div>
+                  <div
+                    style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold);font-weight:300;">
+                    ₹5,000</div>
+                </div>
+                <div style="text-align:right;">
+                  <div
+                    style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.3rem;">
+                    Valid For</div>
+                  <div style="color:rgba(255,255,255,.7);font-size:.9rem;">12 Months</div>
+                </div>
+              </div>
+              <div
+                style="margin-top:1.5rem;font-family:'Jost',monospace;letter-spacing:.3em;color:rgba(255,255,255,.3);font-size:.8rem;">
+                AURA •••• •••• 5821</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     BLOG
+═══════════════════════════════════════════════════ -->
+  <section id="blog">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="section-label">From Our Blog</div>
+          <h2 class="section-title">Wellness &amp; <em>Spa Insights</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="blog-card">
+            <div class="blog-img"
+              style="background:linear-gradient(135deg,#3a5140,#c9b48e);display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-hands fa-4x" style="color:rgba(255,255,255,.2);"></i>
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span class="blog-tag">Massage</span>
+                <span class="blog-date"><i class="far fa-calendar"></i> May 12, 2025</span>
+              </div>
+              <h4>5 Benefits of Regular Massage Therapy You Need to Know</h4>
+              <p>Discover how consistent massage sessions can transform your health, mood, and overall quality of
+                life...</p>
+              <a href="#" class="blog-read">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="blog-card">
+            <div class="blog-img"
+              style="background:linear-gradient(135deg,#8b6340,#5a7a5c);display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-seedling fa-4x" style="color:rgba(255,255,255,.2);"></i>
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span class="blog-tag">Aromatherapy</span>
+                <span class="blog-date"><i class="far fa-calendar"></i> May 8, 2025</span>
+              </div>
+              <h4>Aromatherapy: How Essential Oils Heal Body and Mind</h4>
+              <p>From lavender to eucalyptus, explore the science and art behind therapeutic essential oil
+                applications...</p>
+              <a href="#" class="blog-read">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="blog-card">
+            <div class="blog-img"
+              style="background:linear-gradient(135deg,#d4a96a,#2c3d2e);display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-heart fa-4x" style="color:rgba(255,255,255,.2);"></i>
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span class="blog-tag">Self Care</span>
+                <span class="blog-date"><i class="far fa-calendar"></i> May 3, 2025</span>
+              </div>
+              <h4>Self-Care Rituals for a Better, Happier You This Season</h4>
+              <p>Build a sustainable wellness routine with these expert-backed practices that nourish every layer of
+                your being...</p>
+              <a href="#" class="blog-read">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4" data-aos="fade-up">
+        <a href="#" class="btn-outline-gold">View All Articles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     BOOKING FORM
+═══════════════════════════════════════════════════ -->
+  <section id="booking">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="section-label">Reservations</div>
+          <h2 class="section-title">Book Your <em>Session</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+        </div>
+      </div>
+      <div class="booking-wrap" data-aos="fade-up">
+        <div class="row g-0">
+          <div class="col-lg-5">
+            <div class="booking-left h-100">
+              <h2>Ready to <em>Begin</em> Your Journey?</h2>
+              <p>Reserve your personal sanctuary and let our expert therapists craft a session tailored entirely to you.
+              </p>
+              <div class="booking-info">
+                <div class="booking-info-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>12 Serenity Boulevard, Wellness District, WD 400001</span>
+                </div>
+                <div class="booking-info-item">
+                  <i class="fas fa-phone"></i>
+                  <span>+91 98765 43210</span>
+                </div>
+                <div class="booking-info-item">
+                  <i class="fas fa-envelope"></i>
+                  <span>hello@aurawellness.com</span>
+                </div>
+                <div class="booking-info-item">
+                  <i class="fas fa-clock"></i>
+                  <span>Open Daily: 9:00 AM – 9:00 PM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="booking-right">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label class="form-label">First Name</label>
+                  <input type="text" class="form-control" placeholder="Your first name">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Last Name</label>
+                  <input type="text" class="form-control" placeholder="Your last name">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Email Address</label>
+                  <input type="email" class="form-control" placeholder="you@example.com">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" placeholder="+91 00000 00000">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Select Service</label>
+                  <select class="form-select">
+                    <option value="">Choose a service...</option>
+                    <option>Body Massage</option>
+                    <option>Aromatherapy</option>
+                    <option>Facial Treatment</option>
+                    <option>Hot Stone Therapy</option>
+                    <option>Skin Care Ritual</option>
+                    <option>Sauna Relaxation</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Select Therapist</label>
+                  <select class="form-select">
+                    <option value="">Any available</option>
+                    <option>Priya Sharma</option>
+                    <option>Marcus Lei</option>
+                    <option>Elena Rossi</option>
+                    <option>David Nkosi</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Preferred Date</label>
+                  <input type="date" class="form-control">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Preferred Time</label>
+                  <select class="form-select">
+                    <option>09:00 AM</option>
+                    <option>11:00 AM</option>
+                    <option>01:00 PM</option>
+                    <option>03:00 PM</option>
+                    <option>05:00 PM</option>
+                    <option>07:00 PM</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Special Requests</label>
+                  <textarea class="form-control" rows="3"
+                    placeholder="Any allergies, preferences, or special requirements..."></textarea>
+                </div>
+                <div class="col-12 mt-2">
+                  <button class="btn-gold w-100 py-3" onclick="submitBooking()"><span>Confirm My Booking
+                      ✦</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     INSTAGRAM / SOCIAL FEED
+═══════════════════════════════════════════════════ -->
+  <section id="instagram">
+    <div class="container text-center mb-4" data-aos="fade-up">
+      <div class="section-label">Follow Our Journey</div>
+      <div class="insta-handle">@aurawellness</div>
+      <p style="color:var(--muted);font-size:.85rem;margin-top:.5rem;">Join our community of wellness lovers for daily
+        inspiration, tips &amp; behind-the-scenes moments.</p>
+    </div>
+    <div class="insta-grid" data-aos="fade-up">
+      <div class="insta-item" style="background:linear-gradient(135deg,#2c3d2e,#8b6340);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><i
+            class="fas fa-spa fa-3x" style="color:rgba(255,255,255,.2);"></i></div>
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+      <div class="insta-item" style="background:linear-gradient(135deg,#c9b48e,#5a7a5c);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><i
+            class="fas fa-leaf fa-3x" style="color:rgba(255,255,255,.2);"></i></div>
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+      <div class="insta-item" style="background:linear-gradient(135deg,#d4a96a,#2c3d2e);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><i
+            class="fas fa-hands fa-3x" style="color:rgba(255,255,255,.2);"></i></div>
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+      <div class="insta-item" style="background:linear-gradient(135deg,#3a5140,#d4a96a);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><i
+            class="fas fa-fire fa-3x" style="color:rgba(255,255,255,.2);"></i></div>
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+      <div class="insta-item" style="background:linear-gradient(135deg,#8b6340,#3a5140);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><i
+            class="fas fa-heart fa-3x" style="color:rgba(255,255,255,.2);"></i></div>
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+      <div class="insta-item" style="background:linear-gradient(135deg,#5a7a5c,#c9b48e);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><i
+            class="fas fa-water fa-3x" style="color:rgba(255,255,255,.2);"></i></div>
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════════ -->
+  <section id="faq">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="section-label" style="color:var(--gold2);">FAQ</div>
+          <h2 class="section-title" style="color:var(--cream);">Frequently Asked <em>Questions</em></h2>
+          <div class="divider-ornament"><span>✦</span></div>
+        </div>
+      </div>
+      <div class="row justify-content-center" data-aos="fade-up">
+        <div class="col-lg-8">
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#faq1">How far in advance should I book my appointment?</button></h2>
+              <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">We recommend booking at least 48 hours in advance for weekday sessions and
+                  5–7 days ahead for weekends and holidays. Our online booking system shows real-time availability for
+                  your convenience.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#faq2">What should I wear during a spa treatment?</button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">We provide premium robes, slippers, and all necessary linens. You are
+                  welcome to wear your own comfortable clothing or use our complimentary spa attire during your visit.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#faq3">Are your products organic and cruelty-free?</button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">Absolutely. We exclusively use certified organic, cruelty-free products from
+                  ethical suppliers. All our formulas are free from parabens, sulphates, and artificial fragrances.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#faq4">Do you offer treatments for couples?</button></h2>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">Yes! Our Couple Bliss Package is among our most popular offerings. Enjoy
+                  side-by-side massages, a shared aromatherapy ritual, and private relaxation time in our couple's
+                  suite.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#faq5">What is your cancellation policy?</button></h2>
+              <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">We ask for 24 hours' notice for cancellations or rescheduling. Late
+                  cancellations within 12 hours may be subject to a 50% charge. Members enjoy flexible rescheduling with
+                  no penalty.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#faq6">Is parking available at Aura Wellness?</button></h2>
+              <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">Complimentary valet parking is available for all our guests. We also offer
+                  validated parking in the adjacent multi-level facility for extended visits.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     CTA BAND
+═══════════════════════════════════════════════════ -->
+  <section id="cta-band">
+    <div class="cta-inner" data-aos="fade-up">
+      <div class="section-label mx-auto mb-3">Begin Today</div>
+      <h2>Take Time <em>For Yourself</em></h2>
+      <p style="color:var(--muted);font-size:1rem;margin:1.5rem auto 2.5rem;max-width:440px;line-height:1.8;">You
+        deserve a retreat from the world. Book your session now and experience total relaxation, renewal, and radiance
+        at Aura Wellness.</p>
+      <a href="#booking" class="btn-gold"><span>Book Your Session ✦</span></a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="footer-brand"><span class="script">Aura</span> Wellness</div>
+          <p class="footer-desc">Your ultimate destination for relaxation, healing, and rejuvenation. Where luxury meets
+            serenity.</p>
+          <div class="footer-socials">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-2" data-aos="fade-up" data-aos-delay="200">
+          <div class="footer-heading">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#therapists">Therapists</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#booking">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-2" data-aos="fade-up" data-aos-delay="300">
+          <div class="footer-heading">Our Services</div>
+          <ul class="footer-links">
+            <li><a href="#">Body Massage</a></li>
+            <li><a href="#">Facial Treatment</a></li>
+            <li><a href="#">Hot Stone Therapy</a></li>
+            <li><a href="#">Aromatherapy</a></li>
+            <li><a href="#">Skin Care Ritual</a></li>
+            <li><a href="#">Sauna Relaxation</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-2" data-aos="fade-up" data-aos-delay="350">
+          <div class="footer-heading">Contact Us</div>
+          <ul class="footer-contact list-unstyled">
+            <li><i class="fas fa-map-marker-alt"></i><span>12 Serenity Blvd, Wellness City, WD 400001</span></li>
+            <li><i class="fas fa-phone"></i><span>+91 98765 43210</span></li>
+            <li><i class="fas fa-envelope"></i><span>hello@aurawellness.com</span></li>
+            <li><i class="fas fa-clock"></i><span>Daily: 9 AM – 9 PM</span></li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-2" data-aos="fade-up" data-aos-delay="400">
+          <div class="footer-heading">Newsletter</div>
+          <p style="color:rgba(255,255,255,.35);font-size:.8rem;line-height:1.7;margin-bottom:1rem;">Subscribe to
+            wellness tips, seasonal offers, and exclusive updates.</p>
+          <div class="footer-newsletter d-flex gap-1">
+            <input type="email" class="form-control" placeholder="Your email">
+            <button class="btn"><i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container d-flex justify-content-between flex-wrap gap-2">
+        <p>© 2025 Aura Wellness. All Rights Reserved.</p>
+        <p>Privacy Policy &nbsp;|&nbsp; Terms &amp; Conditions &nbsp;|&nbsp; Cookie Policy</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // ── SAFE AOS INIT ────────────────────────────────────
+    function initAOS() {
+      if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 900, easing: 'ease-out-cubic', once: true, offset: 60 });
+      } else {
+        document.querySelectorAll('[data-aos]').forEach(el => {
+          el.style.opacity = '1'; el.style.transform = 'none';
+        });
+      }
+    }
+    if (document.readyState === 'complete') { initAOS(); }
+    else { window.addEventListener('load', initAOS); }
+
+    // ── CUSTOM CURSOR ───────────────────────────────────
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let rx = 0, ry = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', e => {
+      cx = e.clientX; cy = e.clientY;
+      cursor.style.left = cx + 'px';
+      cursor.style.top = cy + 'px';
+    });
+    function animRing() {
+      rx += (cx - rx) * 0.12;
+      ry += (cy - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+    document.querySelectorAll('a, button, .service-card, .why-card, .pkg-card, .therapist-card, .gallery-item, .insta-item, .blog-card, .plan-card, .testi-card').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; ring.style.width = '55px'; ring.style.height = '55px'; });
+      el.addEventListener('mouseleave', () => { cursor.style.width = '10px'; cursor.style.height = '10px'; ring.style.width = '36px'; ring.style.height = '36px'; });
+    });
+
+    // ── SCROLL PROGRESS + NAVBAR ────────────────────────
+    const nav = document.getElementById('mainNav');
+    const prog = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = (s / h * 100) + '%';
+      nav.classList.toggle('scrolled', s > 60);
+    });
+
+    // ── COUNTER ANIMATION ───────────────────────────────
+    const counters = document.querySelectorAll('.stat-num[data-target]');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = +el.dataset.target;
+          const dur = 2000;
+          const step = target / (dur / 16);
+          let cur = 0;
+          const timer = setInterval(() => {
+            cur = Math.min(cur + step, target);
+            el.textContent = target >= 1000 ? Math.round(cur).toLocaleString() + '+' : Math.round(cur) + (target === 98 ? '%' : '+');
+            if (cur >= target) clearInterval(timer);
+          }, 16);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => io.observe(c));
+
+    // ── LIGHTBOX ────────────────────────────────────────
+    function openLightbox(item) {
+      // Since we're using CSS gradients (no real images), show a styled placeholder
+      const lb = document.getElementById('lightbox');
+      lb.classList.add('active');
+    }
+    document.getElementById('lightboxClose').addEventListener('click', () => {
+      document.getElementById('lightbox').classList.remove('active');
+    });
+    document.getElementById('lightbox').addEventListener('click', function (e) {
+      if (e.target === this) this.classList.remove('active');
+    });
+
+    // ── GIFT AMOUNT BUTTONS ─────────────────────────────
+    document.querySelectorAll('.gift-amount-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.gift-amount-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const amtEl = document.querySelector('.gift-card-visual .plan-price') || document.querySelector('.gift-card-visual div[style*="font-size:2.5rem"]');
+        const val = this.textContent;
+        if (val !== 'Custom' && amtEl) amtEl.textContent = val;
+      });
+    });
+
+    // ── SMOOTH SCROLL ───────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ── BOOKING SUBMIT ──────────────────────────────────
+    function submitBooking() {
+      const btn = document.querySelector('#booking .btn-gold');
+      const original = btn.innerHTML;
+      btn.innerHTML = '<span>✦ Booking Confirmed! We will contact you shortly. ✦</span>';
+      btn.style.background = 'linear-gradient(135deg, var(--forest), var(--moss))';
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.style.background = '';
+      }, 4000);
+    }
+
+    // ── PARALLAX HERO ───────────────────────────────────
+    window.addEventListener('scroll', () => {
+      const hero = document.querySelector('.hero-bg');
+      if (hero) hero.style.transform = `scale(1.05) translateY(${window.scrollY * 0.15}px)`;
+    });
+  </script>
+</body>
+
+</html>

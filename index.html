@@ -1,0 +1,3665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aura Wellness – Relax. Restore. Radiate.</title>
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+
+    <style>
+        /* ============================
+       CSS VARIABLES & RESET
+    ============================ */
+        :root {
+            --gold: #C9A96E;
+            --gold-light: #E8D5B0;
+            --gold-dark: #9A7240;
+            --cream: #FAF6F0;
+            --cream-dark: #F0E8DC;
+            --forest: #1E2D25;
+            --forest-mid: #2D4035;
+            --forest-light: #3A5444;
+            --stone: #7C7264;
+            --white: #FFFFFF;
+            --text-dark: #1A1714;
+            --text-mid: #4A4540;
+            --text-light: #8C8680;
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(201, 169, 110, 0.25);
+            --radius-lg: 20px;
+            --radius-xl: 32px;
+            --shadow-gold: 0 8px 40px rgba(201, 169, 110, 0.18);
+            --shadow-dark: 0 20px 60px rgba(30, 45, 37, 0.25);
+            --transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* ============================
+       CUSTOM CURSOR
+    ============================ */
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+            mix-blend-mode: multiply;
+        }
+
+        #cursor-follower {
+            position: fixed;
+            width: 38px;
+            height: 38px;
+            border: 1.5px solid var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.18s ease, width 0.35s, height 0.35s, opacity 0.3s;
+            opacity: 0.6;
+        }
+
+        body:hover #cursor {
+            opacity: 1;
+        }
+
+        .cursor-grow #cursor {
+            width: 22px;
+            height: 22px;
+            background: var(--gold-dark);
+        }
+
+        .cursor-grow #cursor-follower {
+            width: 60px;
+            height: 60px;
+            opacity: 0.3;
+        }
+
+        /* ============================
+       SCROLLBAR
+    ============================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--forest);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        /* ============================
+       TYPOGRAPHY
+    ============================ */
+        h1,
+        h2,
+        h3,
+        .display-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .section-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--text-dark);
+        }
+
+        .section-title em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .section-title.light {
+            color: var(--cream);
+        }
+
+        .section-title.light em {
+            color: var(--gold-light);
+        }
+
+        .gold-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 1.2rem auto;
+        }
+
+        .gold-divider.left {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        /* ============================
+       NAVBAR
+    ============================ */
+        #mainNav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.2rem 0;
+            transition: var(--transition);
+        }
+
+        #mainNav.scrolled {
+            background: rgba(30, 45, 37, 0.96);
+            backdrop-filter: blur(20px);
+            padding: 0.7rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .navbar-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--gold) !important;
+            letter-spacing: 0.08em;
+        }
+
+        .navbar-brand span {
+            color: var(--cream);
+            font-weight: 300;
+        }
+
+        .nav-link {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 400;
+            color: rgba(250, 246, 240, 0.82) !important;
+            letter-spacing: 0.06em;
+            padding: 0.4rem 0.85rem !important;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--gold) !important;
+        }
+
+        .btn-book-nav {
+            background: var(--gold);
+            color: var(--forest) !important;
+            border-radius: 50px;
+            padding: 0.45rem 1.3rem !important;
+            font-weight: 500;
+            font-size: 0.82rem;
+            transition: var(--transition);
+        }
+
+        .btn-book-nav:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(201, 169, 110, 0.4);
+        }
+
+        /* ============================
+       HERO
+    ============================ */
+        #hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--forest);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #0D1A12 0%, #1E2D25 40%, #2D4035 80%, #1A2820 100%);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 50%, rgba(201, 169, 110, 0.08) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 80%, rgba(58, 84, 68, 0.35) 0%, transparent 55%);
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            background-image: repeating-linear-gradient(45deg,
+                    var(--gold) 0, var(--gold) 1px,
+                    transparent 0, transparent 50%);
+            background-size: 30px 30px;
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: orbFloat 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(201, 169, 110, 0.06);
+            top: -10%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: rgba(58, 84, 68, 0.2);
+            bottom: 10%;
+            left: -5%;
+            animation-delay: 3s;
+        }
+
+        .orb-3 {
+            width: 200px;
+            height: 200px;
+            background: rgba(201, 169, 110, 0.04);
+            top: 40%;
+            left: 30%;
+            animation-delay: 5s;
+        }
+
+        @keyframes orbFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-30px) scale(1.05);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding-top: 1rem;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.35em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .italic {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .hero-title .outline {
+            -webkit-text-stroke: 1px var(--gold);
+            color: transparent;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: rgba(250, 246, 240, 0.65);
+            max-width: 400px;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-primary-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--forest);
+            border: none;
+            border-radius: 50px;
+            padding: 0.9rem 2.2rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary-gold::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn-primary-gold:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(201, 169, 110, 0.45);
+        }
+
+        .btn-primary-gold span,
+        .btn-primary-gold i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-outline-gold {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            padding: 0.9rem 2.2rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: var(--transition);
+        }
+
+        .btn-outline-gold:hover {
+            background: var(--gold);
+            color: var(--forest);
+            transform: translateY(-3px);
+        }
+
+        /* Hero image side */
+        .hero-visual {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-img-wrap {
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+        }
+
+        .hero-img-wrap img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: var(--radius-xl);
+            transition: transform 8s ease;
+        }
+
+        .hero-img-wrap:hover img {
+            transform: scale(1.04);
+        }
+
+        .hero-img-frame {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            bottom: 15px;
+            left: 15px;
+            border: 1px solid var(--gold);
+            border-radius: var(--radius-xl);
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: 30px;
+            left: -20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.5rem;
+            color: var(--cream);
+            min-width: 180px;
+        }
+
+        .hero-badge .num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .hero-badge .lbl {
+            font-size: 0.75rem;
+            color: rgba(250, 246, 240, 0.7);
+            margin-top: 0.2rem;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(250, 246, 240, 0.5);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+                transform: scaleY(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scaleY(1.2);
+            }
+        }
+
+        /* ============================
+       TRUSTED STATS
+    ============================ */
+        #stats {
+            background: var(--forest);
+            padding: 2.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #stats::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, var(--forest-mid), var(--forest), var(--forest-mid));
+        }
+
+        .stats-inner {
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(201, 169, 110, 0.15);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.5rem 1rem;
+            border-right: 1px solid rgba(201, 169, 110, 0.15);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: rgba(250, 246, 240, 0.6);
+            letter-spacing: 0.08em;
+            margin-top: 0.25rem;
+        }
+
+        .stat-icon {
+            font-size: 1.1rem;
+            color: var(--gold);
+            opacity: 0.7;
+            margin-bottom: 0.3rem;
+        }
+
+        /* ============================
+       SECTIONS SHARED
+    ============================ */
+        section {
+            padding: 6rem 0;
+        }
+
+        /* ============================
+       SERVICES
+    ============================ */
+        #services {
+            background: var(--cream);
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(201, 169, 110, 0.12);
+            transition: var(--transition);
+            position: relative;
+            cursor: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-gold);
+            border-color: var(--gold);
+        }
+
+        .service-card-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .service-card:hover .service-card-img img {
+            transform: scale(1.1);
+        }
+
+        .service-card-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(30, 45, 37, 0.5) 0%, transparent 60%);
+        }
+
+        .service-icon {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 44px;
+            height: 44px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--forest);
+            font-size: 1rem;
+            z-index: 3;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.4);
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--forest);
+            color: var(--gold);
+            transform: translateX(-50%) rotate(15deg) scale(1.1);
+        }
+
+        .service-body {
+            padding: 2rem 1.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .service-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-desc {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .service-link {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--gold-dark);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: gap 0.3s;
+        }
+
+        .service-link:hover {
+            gap: 0.8rem;
+        }
+
+        /* ============================
+       ABOUT
+    ============================ */
+        #about {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #about::before {
+            content: '"';
+            position: absolute;
+            top: -2rem;
+            left: 3rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 25rem;
+            color: rgba(201, 169, 110, 0.04);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .about-img-stack {
+            position: relative;
+        }
+
+        .about-img-main {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-dark);
+        }
+
+        .about-img-main img {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+
+        .about-img-main:hover img {
+            transform: scale(1.04);
+        }
+
+        .about-img-float {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 200px;
+            height: 200px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 4px solid var(--forest);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .about-img-float img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-years {
+            position: absolute;
+            top: 30px;
+            left: -20px;
+            background: var(--gold);
+            border-radius: var(--radius-lg);
+            padding: 1.2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(201, 169, 110, 0.4);
+        }
+
+        .about-years .num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: var(--forest);
+            line-height: 1;
+        }
+
+        .about-years .lbl {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--forest);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-feature-icon {
+            width: 46px;
+            height: 46px;
+            background: rgba(201, 169, 110, 0.12);
+            border: 1px solid rgba(201, 169, 110, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .about-feature:hover .about-feature-icon {
+            background: var(--gold);
+            color: var(--forest);
+            transform: rotate(5deg);
+        }
+
+        .about-feature-text h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--cream);
+            margin-bottom: 0.2rem;
+        }
+
+        .about-feature-text p {
+            font-size: 0.8rem;
+            color: rgba(250, 246, 240, 0.6);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ============================
+       SPECIAL OFFERS
+    ============================ */
+        #offers {
+            background: var(--cream-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            position: relative;
+            height: 380px;
+            cursor: none;
+            transition: var(--transition);
+        }
+
+        .offer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .offer-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .offer-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .offer-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(30, 45, 37, 0.92) 0%, rgba(30, 45, 37, 0.4) 50%, transparent 100%);
+        }
+
+        .offer-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--forest);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 50px;
+            padding: 0.25rem 0.9rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .offer-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .offer-price {
+            font-size: 0.85rem;
+            color: rgba(250, 246, 240, 0.75);
+            margin-bottom: 1rem;
+        }
+
+        .offer-price strong {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        /* ============================
+       WHY CHOOSE US
+    ============================ */
+        #why {
+            background: var(--forest);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-bg-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(8rem, 20vw, 18rem);
+            font-weight: 300;
+            color: rgba(201, 169, 110, 0.03);
+            white-space: nowrap;
+            pointer-events: none;
+            letter-spacing: -0.04em;
+        }
+
+        /* Glassmorphism card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(201, 169, 110, 0.5);
+            background: rgba(255, 255, 255, 0.16);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .glass-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--forest);
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            transition: transform 0.4s ease;
+        }
+
+        .glass-card:hover .glass-icon {
+            transform: rotate(-8deg) scale(1.1);
+        }
+
+        .glass-card h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .glass-card p {
+            font-size: 0.82rem;
+            color: rgba(250, 246, 240, 0.62);
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        /* ============================
+       THERAPISTS
+    ============================ */
+        #therapists {
+            background: var(--cream);
+        }
+
+        .therapist-card {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid rgba(201, 169, 110, 0.12);
+            transition: var(--transition);
+            cursor: none;
+        }
+
+        .therapist-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .therapist-img {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .therapist-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.8s ease;
+        }
+
+        .therapist-card:hover .therapist-img img {
+            transform: scale(1.06);
+        }
+
+        .therapist-social {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            display: flex;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .therapist-card:hover .therapist-social {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .therapist-social a {
+            width: 34px;
+            height: 34px;
+            background: var(--gold);
+            color: var(--forest);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .therapist-social a:hover {
+            background: var(--forest);
+            color: var(--gold);
+        }
+
+        .therapist-body {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .therapist-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .therapist-role {
+            font-size: 0.78rem;
+            color: var(--gold-dark);
+            letter-spacing: 0.08em;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .therapist-exp {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+
+        /* ============================
+       INFINITE CAROUSEL
+    ============================ */
+        #carousel-section {
+            background: var(--forest-mid);
+            padding: 3rem 0;
+            overflow: hidden;
+        }
+
+        .carousel-track-wrap {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-track-wrap::before,
+        .carousel-track-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .carousel-track-wrap::before {
+            left: 0;
+            background: linear-gradient(to right, var(--forest-mid), transparent);
+        }
+
+        .carousel-track-wrap::after {
+            right: 0;
+            background: linear-gradient(to left, var(--forest-mid), transparent);
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1.2rem;
+            width: max-content;
+            animation: infiniteScroll 40s linear infinite;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        .carousel-track-2 {
+            animation: infiniteScrollReverse 45s linear infinite;
+            margin-top: 1.2rem;
+        }
+
+        @keyframes infiniteScroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes infiniteScrollReverse {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .carousel-item-custom {
+            width: 280px;
+            height: 200px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .carousel-item-custom img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .carousel-item-custom:hover img {
+            transform: scale(1.08);
+        }
+
+        .carousel-item-custom .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(30, 45, 37, 0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .carousel-item-custom:hover .overlay {
+            opacity: 1;
+        }
+
+        /* ============================
+       TESTIMONIALS
+    ============================ */
+        #testimonials {
+            background: var(--cream-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border: 1px solid rgba(201, 169, 110, 0.15);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem 2rem;
+            position: relative;
+            transition: var(--transition);
+            cursor: none;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            color: var(--gold);
+            opacity: 0.15;
+            line-height: 1;
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-mid);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold-light);
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--text-dark);
+        }
+
+        .testimonial-loc {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        /* ============================
+       GALLERY
+    ============================ */
+        #gallery {
+            background: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            position: relative;
+            cursor: none;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(30, 45, 37, 0.0);
+            transition: background 0.3s;
+        }
+
+        .gallery-item:hover::after {
+            background: rgba(30, 45, 37, 0.25);
+        }
+
+        .gallery-zoom {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--gold);
+            color: var(--forest);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            z-index: 2;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gallery-item:hover .gallery-zoom {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .g1 {
+            grid-column: 1 / 5;
+            grid-row: 1 / 2;
+        }
+
+        .g2 {
+            grid-column: 5 / 8;
+            grid-row: 1 / 2;
+        }
+
+        .g3 {
+            grid-column: 8 / 13;
+            grid-row: 1 / 3;
+        }
+
+        .g4 {
+            grid-column: 1 / 4;
+            grid-row: 2 / 3;
+        }
+
+        .g5 {
+            grid-column: 4 / 8;
+            grid-row: 2 / 3;
+        }
+
+        /* ============================
+       MEMBERSHIP
+    ============================ */
+        #membership {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
+            position: relative;
+        }
+
+        .plan-card {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: none;
+            position: relative;
+        }
+
+        .plan-card.basic {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+        }
+
+        .plan-card.premium {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            transform: scale(1.03);
+            box-shadow: 0 25px 60px rgba(201, 169, 110, 0.3);
+        }
+
+        .plan-card.elite {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-8px) scale(1.01);
+        }
+
+        .plan-card.premium:hover {
+            transform: translateY(-8px) scale(1.04);
+        }
+
+        .plan-popular {
+            background: var(--forest);
+            color: var(--gold);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 0.4rem;
+        }
+
+        .plan-body {
+            padding: 2.5rem;
+        }
+
+        .plan-name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .plan-card.basic .plan-name,
+        .plan-card.elite .plan-name {
+            color: var(--gold);
+        }
+
+        .plan-card.premium .plan-name {
+            color: var(--forest);
+        }
+
+        .plan-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .plan-card.basic .plan-price,
+        .plan-card.elite .plan-price {
+            color: var(--cream);
+        }
+
+        .plan-card.premium .plan-price {
+            color: var(--forest);
+        }
+
+        .plan-per {
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-card.basic .plan-per,
+        .plan-card.elite .plan-per {
+            color: rgba(250, 246, 240, 0.5);
+        }
+
+        .plan-card.premium .plan-per {
+            color: rgba(30, 45, 37, 0.7);
+        }
+
+        .plan-divider {
+            height: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-card.basic .plan-divider,
+        .plan-card.elite .plan-divider {
+            background: rgba(201, 169, 110, 0.2);
+        }
+
+        .plan-card.premium .plan-divider {
+            background: rgba(30, 45, 37, 0.2);
+        }
+
+        .plan-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.83rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .plan-card.basic .plan-feature,
+        .plan-card.elite .plan-feature {
+            color: rgba(250, 246, 240, 0.75);
+        }
+
+        .plan-card.premium .plan-feature {
+            color: rgba(30, 45, 37, 0.85);
+        }
+
+        .plan-feature .check {
+            font-size: 0.9rem;
+        }
+
+        .plan-card.basic .check,
+        .plan-card.elite .check {
+            color: var(--gold);
+        }
+
+        .plan-card.premium .check {
+            color: var(--forest);
+        }
+
+        .btn-plan {
+            width: 100%;
+            margin-top: 1.5rem;
+            padding: 0.85rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            letter-spacing: 0.05em;
+            border: none;
+            transition: var(--transition);
+            cursor: none;
+        }
+
+        .plan-card.basic .btn-plan,
+        .plan-card.elite .btn-plan {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .plan-card.basic .btn-plan:hover,
+        .plan-card.elite .btn-plan:hover {
+            background: var(--gold);
+            color: var(--forest);
+        }
+
+        .plan-card.premium .btn-plan {
+            background: var(--forest);
+            color: var(--gold);
+        }
+
+        .plan-card.premium .btn-plan:hover {
+            background: var(--forest-mid);
+        }
+
+        /* ============================
+       GIFT CARD
+    ============================ */
+        #gift {
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift-card-visual {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 50%, var(--forest-mid) 100%);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-dark);
+        }
+
+        .gift-card-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201, 169, 110, 0.12) 0%, transparent 60%);
+            border-radius: 50%;
+        }
+
+        .gift-card-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(45deg, rgba(201, 169, 110, 0.03) 0, rgba(201, 169, 110, 0.03) 1px,
+                    transparent 0, transparent 50%);
+            background-size: 20px 20px;
+        }
+
+        .gift-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gift-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gift-tagline {
+            font-size: 0.85rem;
+            color: rgba(250, 246, 240, 0.6);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gift-chip {
+            background: rgba(201, 169, 110, 0.15);
+            border: 1px solid rgba(201, 169, 110, 0.3);
+            border-radius: 8px;
+            width: 50px;
+            height: 36px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gift-card-number {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: rgba(250, 246, 240, 0.5);
+            letter-spacing: 0.25em;
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+        }
+
+        /* ============================
+       BLOG
+    ============================ */
+        #blog {
+            background: var(--cream-dark);
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(201, 169, 110, 0.1);
+            transition: var(--transition);
+            cursor: none;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-gold);
+            border-color: var(--gold);
+        }
+
+        .blog-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .blog-card:hover .blog-img img {
+            transform: scale(1.08);
+        }
+
+        .blog-body {
+            padding: 1.5rem;
+        }
+
+        .blog-category {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            line-height: 1.4;
+            margin-bottom: 0.7rem;
+        }
+
+        .blog-excerpt {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .blog-meta {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* ============================
+       BOOKING
+    ============================ */
+        #booking {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #booking::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 50%, rgba(201, 169, 110, 0.06) 0%, transparent 60%);
+        }
+
+        .booking-form-wrap {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+        }
+
+        .form-floating label {
+            color: rgba(250, 246, 240, 0.6);
+            font-size: 0.85rem;
+        }
+
+        .form-control,
+        .form-select {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+            color: var(--cream);
+            border-radius: 12px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
+            color: var(--cream);
+        }
+
+        .form-control::placeholder {
+            color: rgba(250, 246, 240, 0.4);
+        }
+
+        .form-select option {
+            background: var(--forest);
+            color: var(--cream);
+        }
+
+        .form-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(250, 246, 240, 0.7);
+            letter-spacing: 0.05em;
+            margin-bottom: 0.4rem;
+        }
+
+        /* ============================
+       INSTAGRAM / SOCIAL
+    ============================ */
+        #social {
+            background: var(--cream);
+            padding: 4rem 0;
+        }
+
+        .insta-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .insta-handle {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--gold-dark);
+            letter-spacing: 0.1em;
+        }
+
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.5rem;
+        }
+
+        .insta-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+            cursor: none;
+        }
+
+        .insta-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .insta-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .insta-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(30, 45, 37, 0.0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .insta-item:hover .insta-item-overlay {
+            background: rgba(30, 45, 37, 0.55);
+        }
+
+        .insta-item-overlay i {
+            color: var(--gold);
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .insta-item:hover .insta-item-overlay i {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ============================
+       FAQ
+    ============================ */
+        #faq {
+            background: var(--forest);
+        }
+
+        .faq-item {
+            border: 1px solid rgba(201, 169, 110, 0.15);
+            border-radius: var(--radius-lg);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item.active {
+            border-color: var(--gold);
+        }
+
+        .faq-question {
+            padding: 1.4rem 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: none;
+            background: rgba(255, 255, 255, 0.04);
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .faq-question h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--cream);
+            margin: 0;
+        }
+
+        .faq-icon {
+            width: 30px;
+            height: 30px;
+            background: rgba(201, 169, 110, 0.12);
+            border: 1px solid rgba(201, 169, 110, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            transition: transform 0.35s, background 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            background: var(--gold);
+            color: var(--forest);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .faq-answer.open {
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            padding: 0 1.8rem 1.4rem;
+            font-size: 0.85rem;
+            color: rgba(250, 246, 240, 0.65);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* ============================
+       FOOTER
+    ============================ */
+        #footer {
+            background: var(--text-dark);
+            padding: 5rem 0 0;
+        }
+
+        .footer-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: rgba(250, 246, 240, 0.5);
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-desc {
+            font-size: 0.8rem;
+            color: rgba(250, 246, 240, 0.45);
+            line-height: 1.8;
+        }
+
+        .footer-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link {
+            display: block;
+            font-size: 0.82rem;
+            color: rgba(250, 246, 240, 0.55);
+            text-decoration: none;
+            margin-bottom: 0.6rem;
+            transition: color 0.3s, padding-left 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social a {
+            width: 38px;
+            height: 38px;
+            background: rgba(201, 169, 110, 0.1);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+            color: var(--forest);
+            transform: translateY(-3px);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-contact-item i {
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-top: 0.15rem;
+        }
+
+        .footer-contact-item span {
+            font-size: 0.8rem;
+            color: rgba(250, 246, 240, 0.55);
+            line-height: 1.6;
+        }
+
+        .footer-newsletter .form-control {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+            color: var(--cream);
+            border-radius: 50px 0 0 50px;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.82rem;
+        }
+
+        .footer-newsletter .form-control::placeholder {
+            color: rgba(250, 246, 240, 0.4);
+        }
+
+        .footer-newsletter .btn {
+            background: var(--gold);
+            color: var(--forest);
+            border: none;
+            border-radius: 0 50px 50px 0;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-newsletter .btn:hover {
+            background: var(--gold-dark);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(201, 169, 110, 0.1);
+            padding: 1.5rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.75rem;
+            color: rgba(250, 246, 240, 0.35);
+            margin: 0;
+        }
+
+        /* ============================
+       BACK TO TOP
+    ============================ */
+        #backTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 46px;
+            height: 46px;
+            background: var(--gold);
+            color: var(--forest);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: none;
+            z-index: 500;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(201, 169, 110, 0.4);
+        }
+
+        #backTop.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #backTop:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+        }
+
+        /* ============================
+       UTILITY
+    ============================ */
+        .text-gold {
+            color: var(--gold) !important;
+        }
+
+        .bg-forest {
+            background: var(--forest) !important;
+        }
+
+        /* image placeholder using gradient */
+        .img-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: rgba(201, 169, 110, 0.4);
+        }
+
+        @media (max-width: 991px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+
+            .g1,
+            .g2,
+            .g3,
+            .g4,
+            .g5 {
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .insta-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero-img-wrap img {
+                height: 400px;
+            }
+
+            .about-img-float {
+                display: none;
+            }
+
+            .plan-card.premium {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .insta-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+            }
+
+            .stat-item:last-child {
+                border-bottom: none;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <!-- BACK TO TOP -->
+    <button id="backTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+
+    <!-- ============================
+     NAVBAR
+============================ -->
+    <nav id="mainNav" class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">AURA <span>WELLNESS</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span style="color:var(--gold);font-size:1.5rem;"><i class="bi bi-list"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#therapists">Therapists</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#membership">Membership</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                </ul>
+                <a href="#booking" class="btn-book-nav nav-link">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================
+     HERO
+============================ -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-pattern"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+
+        <div class="container hero-content">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="hero-eyebrow">Luxury Spa & Wellness</div>
+                    <h1 class="hero-title">
+                        Restore Your<br>
+                        <span class="italic">Inner</span><br>
+                        <span class="outline">Radiance</span>
+                    </h1>
+                    <p class="hero-sub">A sanctuary where ancient healing traditions meet modern luxury. Every treatment
+                        is a journey to your deepest calm.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#booking" class="btn-primary-gold">
+                            <span>Book a Session</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a href="#services" class="btn-outline-gold">
+                            <i class="bi bi-play-circle"></i>
+                            <span>Explore Services</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 hero-visual" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="hero-img-wrap">
+                        <img src="./images/hero-compressed.jpg"
+                            alt="Spa Treatment" loading="lazy" />
+                        <div class="hero-img-frame"></div>
+                    </div>
+                    <div class="hero-badge" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="num" id="clientCounter">0</div>
+                        <div class="lbl">Happy Clients This Year</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- ============================
+     STATS
+============================ -->
+    <section id="stats" style="padding:2.5rem 0;">
+        <div class="container">
+            <div class="stats-inner">
+                <div class="row g-0">
+                    <div class="col-6 col-md stat-item" data-aos="fade-up" data-aos-delay="0">
+                        <div class="stat-icon"><i class="bi bi-calendar-check"></i></div>
+                        <div class="stat-num">12+</div>
+                        <div class="stat-label">Years of Excellence</div>
+                    </div>
+                    <div class="col-6 col-md stat-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-icon"><i class="bi bi-people"></i></div>
+                        <div class="stat-num">8,500+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="col-6 col-md stat-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-icon"><i class="bi bi-person-badge"></i></div>
+                        <div class="stat-num">24</div>
+                        <div class="stat-label">Expert Therapists</div>
+                    </div>
+                    <div class="col-6 col-md stat-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-icon"><i class="bi bi-patch-check"></i></div>
+                        <div class="stat-num">100%</div>
+                        <div class="stat-label">Satisfaction Guarantee</div>
+                    </div>
+                    <div class="col-6 col-md stat-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-icon"><i class="bi bi-trophy"></i></div>
+                        <div class="stat-num">18</div>
+                        <div class="stat-label">Wellness Awards</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     SERVICES
+============================ -->
+    <section id="services">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-label">Our Services</span>
+                <h2 class="section-title">Premium Spa &amp; <em>Wellness</em> Services</h2>
+                <div class="gold-divider"></div>
+                <p class="text-muted mt-3" style="max-width:500px;margin:0 auto;font-size:0.9rem;">Each treatment is
+                    thoughtfully designed to restore balance, renew energy, and revive your natural radiance.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Service cards -->
+                <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="service-card hover-card">
+                        <div class="service-card-img">
+                            <img src="./images/body_ma-compressed.jpg"
+                                alt="Body Massage" loading="lazy" />
+                            <div class="service-icon"><i class="bi bi-hand-index-thumb"></i></div>
+                        </div>
+                        <div class="service-body">
+                            <h3 class="service-title">Body Massage</h3>
+                            <p class="service-desc">Relieve deep muscle tension and improve circulation with our
+                                signature full-body therapeutic massage.</p>
+                            <a href="#booking" class="service-link">Book Now <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+                    <div class="service-card">
+                        <div class="service-card-img">
+                            <img src="./images/aroma__.jpg"
+                                alt="Aromatherapy" loading="lazy" />
+                            <div class="service-icon"><i class="bi bi-droplet"></i></div>
+                        </div>
+                        <div class="service-body">
+                            <h3 class="service-title">Aromatherapy</h3>
+                            <p class="service-desc">Harness the healing power of pure essential oils to soothe the mind
+                                and nurture the senses.</p>
+                            <a href="#booking" class="service-link">Book Now <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+                    <div class="service-card">
+                        <div class="service-card-img">
+                            <img src="./images/face_tre-compressed.jpg"
+                                alt="Facial Treatment" loading="lazy" />
+                            <div class="service-icon"><i class="bi bi-stars"></i></div>
+                        </div>
+                        <div class="service-body">
+                            <h3 class="service-title">Facial Treatment</h3>
+                            <p class="service-desc">Revitalize and illuminate your skin with our bespoke facials using
+                                organic, cruelty-free formulations.</p>
+                            <a href="#booking" class="service-link">Book Now <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="service-card">
+                        <div class="service-card-img">
+                            <img src="./images/hot_sto-compressed.jpg"
+                                alt="Hot Stone" loading="lazy" />
+                            <div class="service-icon"><i class="bi bi-gem"></i></div>
+                        </div>
+                        <div class="service-body">
+                            <h3 class="service-title">Hot Stone Therapy</h3>
+                            <p class="service-desc">Smooth volcanic stones melt away tension, deeply relaxing muscles
+                                and balancing your energy.</p>
+                            <a href="#booking" class="service-link">Book Now <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+                    <div class="service-card">
+                        <div class="service-card-img">
+                            <img src="./images/skn_care-compressed.jpg"
+                                alt="Skin Care" loading="lazy" />
+                            <div class="service-icon"><i class="bi bi-flower1"></i></div>
+                        </div>
+                        <div class="service-body">
+                            <h3 class="service-title">Skin Care Ritual</h3>
+                            <p class="service-desc">Deep nourishing rituals that restore luminosity and youthfulness to
+                                all skin types.</p>
+                            <a href="#booking" class="service-link">Book Now <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+                    <div class="service-card">
+                        <div class="service-card-img">
+                            <img src="./images/relax-compressed.jpg"
+                                alt="Sauna" loading="lazy" />
+                            <div class="service-icon"><i class="bi bi-fire"></i></div>
+                        </div>
+                        <div class="service-body">
+                            <h3 class="service-title">Sauna Relaxation</h3>
+                            <p class="service-desc">Detoxify your body and refresh your mind in our premium infrared and
+                                Finnish sauna suites.</p>
+                            <a href="#booking" class="service-link">Book Now <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     ABOUT
+============================ -->
+    <section id="about">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="about-img-stack">
+                        <div class="about-years" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="num">12</div>
+                            <div class="lbl">Years of<br>Excellence</div>
+                        </div>
+                        <div class="about-img-main">
+                            <img src="./images/about_b-compressed.jpg"
+                                alt="Spa Interior" loading="lazy" />
+                        </div>
+                        <div class="about-img-float" data-aos="fade-up" data-aos-delay="600">
+                            <img src="./images/about-compressed.jpg"
+                                alt="Treatment" loading="lazy" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left" data-aos-duration="1000">
+                    <span class="section-label">About Aura Wellness</span>
+                    <h2 class="section-title light">A Sanctuary of <em>Peace</em><br>& Restoration</h2>
+                    <div class="gold-divider left"></div>
+                    <p style="color:rgba(250,246,240,0.68);font-size:0.92rem;line-height:1.9;margin:1.5rem 0 2.5rem;">
+                        At Aura Wellness, we believe that true beauty originates from within. Our philosophy unites
+                        ancient healing wisdom with contemporary wellness science, creating transformative experiences
+                        that nourish every dimension of your being — body, mind, and spirit.
+                    </p>
+                    <div class="about-feature" data-aos="fade-up" data-aos-delay="100">
+                        <div class="about-feature-icon"><i class="bi bi-tree"></i></div>
+                        <div class="about-feature-text">
+                            <h6>Organic & Natural Products</h6>
+                            <p>We source only the purest certified organic ingredients from sustainable farms worldwide.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="about-feature" data-aos="fade-up" data-aos-delay="200">
+                        <div class="about-feature-icon"><i class="bi bi-award"></i></div>
+                        <div class="about-feature-text">
+                            <h6>Expert & Certified Therapists</h6>
+                            <p>Each of our therapists holds advanced certifications and brings years of dedicated
+                                practice.</p>
+                        </div>
+                    </div>
+                    <div class="about-feature" data-aos="fade-up" data-aos-delay="300">
+                        <div class="about-feature-icon"><i class="bi bi-shield-check"></i></div>
+                        <div class="about-feature-text">
+                            <h6>Hygienic & Completely Safe</h6>
+                            <p>Rigorous sanitisation protocols and premium materials ensure your absolute comfort and
+                                safety.</p>
+                        </div>
+                    </div>
+                    <div class="mt-3" data-aos="fade-up" data-aos-delay="400">
+                        <a href="#about" class="btn-primary-gold">
+                            <span>Discover Our Story</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     SPECIAL OFFERS
+============================ -->
+    <section id="offers">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-label">Special Offers</span>
+                <h2 class="section-title">Exclusive Spa <em>Packages</em> Just For You</h2>
+                <div class="gold-divider"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="offer-card">
+                        <img src="./images/weekend.jpg"
+                            alt="Weekend Refresh" loading="lazy" />
+                        <div class="offer-overlay"></div>
+                        <div class="offer-content">
+                            <span class="offer-badge">Upto 20% Off</span>
+                            <h3 class="offer-title">Weekend Refresh</h3>
+                            <p class="offer-price">From <strong>₹2,499</strong> per person</p>
+                            <a href="#booking" class="btn-outline-gold"
+                                style="padding:0.6rem 1.5rem;font-size:0.8rem;">Reserve Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="120">
+                    <div class="offer-card">
+                        <img src="./images/couple.jpg"
+                            alt="Couple Bliss" loading="lazy" />
+                        <div class="offer-overlay"></div>
+                        <div class="offer-content">
+                            <span class="offer-badge">Upto 25% Off</span>
+                            <h3 class="offer-title">Couple Bliss Package</h3>
+                            <p class="offer-price">From <strong>₹4,999</strong> per couple</p>
+                            <a href="#booking" class="btn-outline-gold"
+                                style="padding:0.6rem 1.5rem;font-size:0.8rem;">Reserve Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="240">
+                    <div class="offer-card">
+                        <img src="./images/new_cli.jpg"
+                            alt="New Client" loading="lazy" />
+                        <div class="offer-overlay"></div>
+                        <div class="offer-content">
+                            <span class="offer-badge">Flat 15% Off</span>
+                            <h3 class="offer-title">New Client Offer</h3>
+                            <p class="offer-price">From <strong>₹1,799</strong> first visit</p>
+                            <a href="#booking" class="btn-outline-gold"
+                                style="padding:0.6rem 1.5rem;font-size:0.8rem;">Reserve Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     WHY CHOOSE US
+============================ -->
+    <section id="why">
+        <div class="why-bg-text">WELLNESS</div>
+        <div class="container position-relative">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-label" style="color:var(--gold-light);">Why Choose Us</span>
+                <h2 class="section-title light">The Aura <em>Difference</em></h2>
+                <div class="gold-divider"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+                    <div class="glass-card">
+                        <div class="glass-icon"><i class="bi bi-tree"></i></div>
+                        <h5>Organic Products</h5>
+                        <p>Every product used is 100% natural, ethically sourced and free from harmful chemicals.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card">
+                        <div class="glass-icon"><i class="bi bi-person-badge-fill"></i></div>
+                        <h5>Certified Experts</h5>
+                        <p>Our therapists are internationally certified professionals with years of hands-on expertise.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card">
+                        <div class="glass-icon"><i class="bi bi-house-heart"></i></div>
+                        <h5>Serene Ambience</h5>
+                        <p>Thoughtfully designed spaces that quiet the mind and transport you to total tranquility.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card">
+                        <div class="glass-icon"><i class="bi bi-calendar2-check"></i></div>
+                        <h5>Easy Booking</h5>
+                        <p>Reserve your perfect session in seconds with our seamless online booking system.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+                    <div class="glass-card">
+                        <div class="glass-icon"><i class="bi bi-heart"></i></div>
+                        <h5>Personalised Care</h5>
+                        <p>Every session is tailored to your unique needs, preferences and wellness goals.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+                    <div class="glass-card">
+                        <div class="glass-icon"><i class="bi bi-shield-check"></i></div>
+                        <h5>100% Hygienic</h5>
+                        <p>Meticulous sanitation standards ensure the highest level of safety for every guest.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="250">
+                    <div class="glass-card">
+                        <div class="glass-icon"><i class="bi bi-clock-history"></i></div>
+                        <h5>Flexible Hours</h5>
+                        <p>Open seven days a week with extended evening slots to suit your busy lifestyle.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="350">
+                    <div class="glass-card">
+                        <div class="glass-icon"><i class="bi bi-gift"></i></div>
+                        <h5>Gift Experiences</h5>
+                        <p>Share the gift of wellness with beautifully presented e-gift cards for any occasion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     THERAPISTS
+============================ -->
+    <section id="therapists">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-label">Our Team</span>
+                <h2 class="section-title">Meet Our <em>Expert</em> Therapists</h2>
+                <div class="gold-divider"></div>
+                <p class="text-muted mt-3" style="max-width:500px;margin:0 auto;font-size:0.88rem;">Passionate
+                    professionals dedicated to your wellbeing, each bringing unique expertise to every treatment.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+                    <div class="therapist-card">
+                        <div class="therapist-img">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"
+                                alt="Therapist" loading="lazy" />
+                            <div class="therapist-social">
+                                <a href="#"><i class="bi bi-instagram"></i></a>
+                                <a href="#"><i class="bi bi-facebook"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="therapist-body">
+                            <div class="therapist-name">Priya Sharma</div>
+                            <div class="therapist-role">Senior Spa Therapist</div>
+                            <div class="therapist-exp">9+ Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="therapist-card">
+                        <div class="therapist-img">
+                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80"
+                                alt="Therapist" loading="lazy" />
+                            <div class="therapist-social">
+                                <a href="#"><i class="bi bi-instagram"></i></a>
+                                <a href="#"><i class="bi bi-facebook"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="therapist-body">
+                            <div class="therapist-name">Dr. Arjun Mehta</div>
+                            <div class="therapist-role">Massage Expert</div>
+                            <div class="therapist-exp">11+ Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="therapist-card">
+                        <div class="therapist-img">
+                            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80"
+                                alt="Therapist" loading="lazy" />
+                            <div class="therapist-social">
+                                <a href="#"><i class="bi bi-instagram"></i></a>
+                                <a href="#"><i class="bi bi-facebook"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="therapist-body">
+                            <div class="therapist-name">Nisha Verma</div>
+                            <div class="therapist-role">Skincare Specialist</div>
+                            <div class="therapist-exp">7+ Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="therapist-card">
+                        <div class="therapist-img">
+                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80"
+                                alt="Therapist" loading="lazy" />
+                            <div class="therapist-social">
+                                <a href="#"><i class="bi bi-instagram"></i></a>
+                                <a href="#"><i class="bi bi-facebook"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="therapist-body">
+                            <div class="therapist-name">Ravi Kapoor</div>
+                            <div class="therapist-role">Wellness Therapist</div>
+                            <div class="therapist-exp">8+ Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     INFINITE CAROUSEL
+============================ -->
+    <section id="carousel-section">
+        <div class="carousel-track-wrap">
+            <div class="carousel-track" id="track1">
+                <!-- 8 images duplicated for seamless loop -->
+                <div class="carousel-item-custom"><img
+                        src="./images/ran1.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran4.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran3.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran9.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran5.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran6.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran7.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran8.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <!-- duplicates -->
+                <div class="carousel-item-custom"><img
+                        src="./images/ran10.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/about-compressed.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/hero-compressed.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/face_tre-compressed.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran1.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran10.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran11.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran12.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-track-wrap mt-3">
+            <div class="carousel-track carousel-track-2" id="track2">
+                <div class="carousel-item-custom"><img
+                        src="./images/ran14-compressed.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran12.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran11.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran8.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran9.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran10.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran11.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran14-compressed.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran3.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran11.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran14-compressed.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran12.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran5.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran11.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran10.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran4.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+                <div class="carousel-item-custom"><img
+                        src="./images/ran13.jpg" alt=""
+                        loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     TESTIMONIALS
+============================ -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-label">Testimonials</span>
+                <h2 class="section-title">What Our <em>Clients</em> Say</h2>
+                <div class="gold-divider"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"The best spa experience I have ever had. The ambience transports
+                            you completely. I left feeling like an entirely new person."</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/8.jpg"
+                                alt="Emily" class="testimonial-avatar" loading="lazy" />
+                            <div>
+                                <div class="testimonial-name">Neha Khan</div>
+                                <div class="testimonial-loc">Kolkata, West Bengal</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="120">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"I feel completely renewed after each visit. The therapists
+                            genuinely listen to your needs. Highly recommend Aura Wellness to everyone."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
+                                alt="James" class="testimonial-avatar" loading="lazy" />
+                            <div>
+                                <div class="testimonial-name">Ajay Raj</div>
+                                <div class="testimonial-loc">Mumbai, Maharashtra</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="240">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"A perfect escape from the city chaos. The hot stone therapy was
+                            absolutely divine — truly a hidden paradise in the heart of the city."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80" alt="Sophia"
+                                class="testimonial-avatar" loading="lazy" />
+                            <div>
+                                <div class="testimonial-name">Priya Sharma</div>
+                                <div class="testimonial-loc">Delhi, Delhi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Testimonial dots -->
+            <div class="text-center mt-4">
+                <span
+                    style="display:inline-block;width:30px;height:3px;background:var(--gold);border-radius:2px;margin:0 4px;"></span>
+                <span
+                    style="display:inline-block;width:8px;height:3px;background:var(--gold-light);border-radius:2px;margin:0 4px;opacity:0.4;"></span>
+                <span
+                    style="display:inline-block;width:8px;height:3px;background:var(--gold-light);border-radius:2px;margin:0 4px;opacity:0.4;"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     GALLERY
+============================ -->
+    <section id="gallery">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-label">Our Gallery</span>
+                <h2 class="section-title">Moments of <em>Relaxation</em></h2>
+                <div class="gold-divider"></div>
+            </div>
+            <div class="gallery-grid" data-aos="fade-up" data-aos-duration="1000">
+                <div class="gallery-item g1">
+                    <img src="./images/new_cli.jpg" alt="Gallery"
+                        loading="lazy" />
+                    <div class="gallery-zoom"><i class="bi bi-zoom-in"></i></div>
+                </div>
+                <div class="gallery-item g2">
+                    <img src="./images/hot_sto-compressed.jpg" alt="Gallery"
+                        loading="lazy" />
+                    <div class="gallery-zoom"><i class="bi bi-zoom-in"></i></div>
+                </div>
+                <div class="gallery-item g3">
+                    <img src="./images/weekend.jpg" alt="Gallery"
+                        loading="lazy" />
+                    <div class="gallery-zoom"><i class="bi bi-zoom-in"></i></div>
+                </div>
+                <div class="gallery-item g4">
+                    <img src="./images/hero-compressed.jpg" alt="Gallery"
+                        loading="lazy" />
+                    <div class="gallery-zoom"><i class="bi bi-zoom-in"></i></div>
+                </div>
+                <div class="gallery-item g5">
+                    <img src="./images/face_tre-compressed.jpg" alt="Gallery"
+                        loading="lazy" />
+                    <div class="gallery-zoom"><i class="bi bi-zoom-in"></i></div>
+                </div>
+            </div>
+            <div class="text-center mt-4" data-aos="fade-up">
+                <a href="#" class="btn-outline-gold" style="color:var(--gold-dark);border-color:var(--gold-dark);">View
+                    Full Gallery <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     MEMBERSHIP
+============================ -->
+    <section id="membership">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-label" style="color:var(--gold-light);">Membership Plans</span>
+                <h2 class="section-title light">Choose Your <em>Wellness</em> Journey</h2>
+                <div class="gold-divider"></div>
+            </div>
+            <div class="row g-4 justify-content-center align-items-center">
+                <div class="col-md-4" data-aos="fade-right" data-aos-delay="0">
+                    <div class="plan-card basic">
+                        <div class="plan-body">
+                            <div class="plan-name">Serenity</div>
+                            <div class="plan-price">₹2,499</div>
+                            <div class="plan-per">/ month</div>
+                            <div class="plan-divider"></div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> 2 sessions per month
+                            </div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> Body massage (60
+                                min)</div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> 10% off retail
+                                products</div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> Member-only offers
+                            </div>
+                            <div class="plan-feature" style="opacity:0.4;"><i class="bi bi-x-circle check"
+                                    style="color:var(--stone);"></i> Priority booking</div>
+                            <button class="btn-plan">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="plan-card premium">
+                        <div class="plan-popular">Most Popular</div>
+                        <div class="plan-body">
+                            <div class="plan-name">Luminary</div>
+                            <div class="plan-price">₹4,999</div>
+                            <div class="plan-per">/ month</div>
+                            <div class="plan-divider"></div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> 5 sessions per month
+                            </div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> All service types
+                            </div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> 20% off retail
+                                products</div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> Priority booking
+                                access</div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> Monthly gift hamper
+                            </div>
+                            <button class="btn-plan">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-left" data-aos-delay="200">
+                    <div class="plan-card elite">
+                        <div class="plan-body">
+                            <div class="plan-name">Aura Elite</div>
+                            <div class="plan-price">₹8,999</div>
+                            <div class="plan-per">/ month</div>
+                            <div class="plan-divider"></div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> Unlimited sessions
+                            </div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> Private suite access
+                            </div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> 30% off all products
+                            </div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> Dedicated therapist
+                            </div>
+                            <div class="plan-feature"><i class="bi bi-check-circle-fill check"></i> Concierge wellness
+                                service</div>
+                            <button class="btn-plan">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     GIFT CARD
+============================ -->
+    <section id="gift">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="gift-card-visual">
+                        <div class="gift-logo">AURA WELLNESS</div>
+                        <div class="gift-amount">₹5,000</div>
+                        <div class="gift-tagline" style="position:relative;z-index:1;">Gift of Wellness</div>
+                        <div class="gift-chip"></div>
+                        <div class="gift-card-number">**** **** **** 8842</div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                    <span class="section-label">Gift Cards</span>
+                    <h2 class="section-title">Share the Gift of <em>Wellness</em></h2>
+                    <div class="gold-divider left"></div>
+                    <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.9;margin:1.5rem 0 2rem;">
+                        Give someone special the ultimate gift — a journey into deep relaxation and renewal. Our
+                        beautifully crafted gift cards are available in any denomination and delivered instantly by
+                        email or as a premium physical card.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <button class="btn btn-sm"
+                            style="border:1px solid var(--gold);color:var(--gold-dark);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;background:transparent;">₹1,000</button>
+                        <button class="btn btn-sm"
+                            style="border:1px solid var(--gold);color:var(--gold-dark);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;background:transparent;">₹2,500</button>
+                        <button class="btn btn-sm"
+                            style="background:var(--gold);color:var(--forest);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;border:none;">₹5,000</button>
+                        <button class="btn btn-sm"
+                            style="border:1px solid var(--gold);color:var(--gold-dark);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;background:transparent;">₹10,000</button>
+                        <button class="btn btn-sm"
+                            style="border:1px solid var(--gold);color:var(--gold-dark);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;background:transparent;">Custom</button>
+                    </div>
+                    <a href="#" class="btn-primary-gold">
+                        <i class="bi bi-gift"></i>
+                        <span>Purchase Gift Card</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     BLOG
+============================ -->
+    <section id="blog">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-label">Wellness Blog</span>
+                <h2 class="section-title">Wellness &amp; <em>Spa</em> Insights</h2>
+                <div class="gold-divider"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="./images/body_ma-compressed.jpg" alt="Blog"
+                                loading="lazy" />
+                        </div>
+                        <div class="blog-body">
+                            <div class="blog-category">Massage Therapy</div>
+                            <h3 class="blog-title">5 Benefits of Regular Massage Therapy for Your Body & Mind</h3>
+                            <p class="blog-excerpt">Discover how consistent massage treatments can transform your
+                                health, reduce chronic stress, and dramatically improve sleep quality.</p>
+                            <div class="blog-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>May 12, 2026</span>
+                                <a href="#" style="color:var(--gold-dark);text-decoration:none;font-weight:500;">Read
+                                    More <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="120">
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="./images/aroma__.jpg"
+                                alt="Blog" loading="lazy" />
+                        </div>
+                        <div class="blog-body">
+                            <div class="blog-category">Aromatherapy</div>
+                            <h3 class="blog-title">Aromatherapy: Healing Through the Power of Essential Oils</h3>
+                            <p class="blog-excerpt">A deep dive into how essential oils interact with your nervous
+                                system to promote relaxation, focus, and emotional balance.</p>
+                            <div class="blog-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>May 8, 2026</span>
+                                <a href="#" style="color:var(--gold-dark);text-decoration:none;font-weight:500;">Read
+                                    More <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="240">
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="./images/skn_care-compressed.jpg"
+                                alt="Blog" loading="lazy" />
+                        </div>
+                        <div class="blog-body">
+                            <div class="blog-category">Self Care</div>
+                            <h3 class="blog-title">Self Care Rituals for a Better, More Radiant You</h3>
+                            <p class="blog-excerpt">Building a sustainable self-care routine that nurtures your skin,
+                                calms your mind, and energises your body every single day.</p>
+                            <div class="blog-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>May 3, 2026</span>
+                                <a href="#" style="color:var(--gold-dark);text-decoration:none;font-weight:500;">Read
+                                    More <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4" data-aos="fade-up">
+                <a href="#" class="btn-outline-gold" style="color:var(--gold-dark);border-color:var(--gold-dark);">View
+                    All Articles <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     BOOKING
+============================ -->
+    <section id="booking">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="text-center mb-5" data-aos="fade-up">
+                        <span class="section-label" style="color:var(--gold-light);">Book Appointment</span>
+                        <h2 class="section-title light">Begin Your <em>Wellness</em> Journey</h2>
+                        <div class="gold-divider"></div>
+                        <p style="color:rgba(250,246,240,0.6);font-size:0.88rem;margin-top:1rem;">Reserve your session
+                            online and we will confirm within 2 hours.</p>
+                    </div>
+                    <div class="booking-form-wrap" data-aos="fade-up" data-aos-delay="200">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" placeholder="Your full name" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" placeholder="your@email.com" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" placeholder="+91 98765 43210" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Preferred Service</label>
+                                <select class="form-select">
+                                    <option value="">Select a service</option>
+                                    <option>Body Massage</option>
+                                    <option>Aromatherapy</option>
+                                    <option>Facial Treatment</option>
+                                    <option>Hot Stone Therapy</option>
+                                    <option>Skin Care Ritual</option>
+                                    <option>Sauna Relaxation</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Preferred Date</label>
+                                <input type="date" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Preferred Time</label>
+                                <select class="form-select">
+                                    <option value="">Select time slot</option>
+                                    <option>10:00 AM – 11:00 AM</option>
+                                    <option>11:30 AM – 12:30 PM</option>
+                                    <option>2:00 PM – 3:00 PM</option>
+                                    <option>3:30 PM – 4:30 PM</option>
+                                    <option>5:00 PM – 6:00 PM</option>
+                                    <option>6:30 PM – 7:30 PM</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Special Requests</label>
+                                <textarea class="form-control" rows="3"
+                                    placeholder="Any allergies, preferences or special requirements..."></textarea>
+                            </div>
+                            <div class="col-12 text-center mt-2">
+                                <button type="submit" class="btn-primary-gold" style="border:none;cursor:none;">
+                                    <span>Confirm Appointment</span>
+                                    <i class="bi bi-calendar-check"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     SOCIAL FEED
+============================ -->
+    <section id="social">
+        <div class="container">
+            <div class="insta-header" data-aos="fade-up">
+                <span class="section-label">Social Feed</span>
+                <div class="insta-handle"><i class="bi bi-instagram me-2"></i>@aurawellness.spa</div>
+            </div>
+            <div class="insta-grid" data-aos="fade-up" data-aos-delay="100">
+                <div class="insta-item">
+                    <img src="./images/ran8.jpg" alt="Instagram"
+                        loading="lazy" />
+                    <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="./images/ran12.jpg" alt="Instagram"
+                        loading="lazy" />
+                    <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="./images/ran11.jpg" alt="Instagram"
+                        loading="lazy" />
+                    <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="./images/ran5.jpg" alt="Instagram"
+                        loading="lazy" />
+                    <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="./images/ran4.jpg" alt="Instagram"
+                        loading="lazy" />
+                    <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="./images/ran1.jpg" alt="Instagram"
+                        loading="lazy" />
+                    <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
+                </div>
+            </div>
+            <div class="text-center mt-4" data-aos="fade-up">
+                <a href="#" class="btn-outline-gold" style="color:var(--gold-dark);border-color:var(--gold-dark);">
+                    <i class="bi bi-instagram me-1"></i> Follow Us on Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     FAQ
+============================ -->
+    <section id="faq">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center mb-5" data-aos="fade-up">
+                        <span class="section-label" style="color:var(--gold-light);">FAQ</span>
+                        <h2 class="section-title light">Frequently Asked <em>Questions</em></h2>
+                        <div class="gold-divider"></div>
+                    </div>
+                    <div id="faqAccordion">
+                        <div class="faq-item" data-aos="fade-up" data-aos-delay="0">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <h6>What should I wear during a spa treatment?</h6>
+                                <div class="faq-icon"><i class="bi bi-plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We provide complimentary spa robes, slippers, and disposable garments for all
+                                    treatments. You will be fully draped and your modesty is always respected throughout
+                                    every session. Simply arrive comfortably and let us take care of everything.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item" data-aos="fade-up" data-aos-delay="60">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <h6>How early should I arrive before my appointment?</h6>
+                                <div class="faq-icon"><i class="bi bi-plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We recommend arriving 15–20 minutes before your scheduled time. This allows you to
+                                    check in, complete your wellness consultation, change, and begin unwinding in our
+                                    tranquil relaxation lounge before your treatment starts.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item" data-aos="fade-up" data-aos-delay="120">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <h6>Do you offer treatments for pregnant guests?</h6>
+                                <div class="faq-icon"><i class="bi bi-plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes, we offer specially adapted prenatal massage and facial treatments that are safe
+                                    and deeply beneficial during pregnancy. Please inform us when booking so we can
+                                    assign a therapist certified in prenatal care and prepare a pregnancy-safe treatment
+                                    plan for you.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item" data-aos="fade-up" data-aos-delay="180">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <h6>What is your cancellation & rescheduling policy?</h6>
+                                <div class="faq-icon"><i class="bi bi-plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We ask that cancellations or rescheduling requests be made at least 24 hours before
+                                    your appointment. Cancellations with less than 24 hours notice may be subject to a
+                                    50% charge. We understand that life happens — simply reach out and our team will do
+                                    their best to accommodate you.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item" data-aos="fade-up" data-aos-delay="240">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <h6>Can I book a private room for a couple's treatment?</h6>
+                                <div class="faq-icon"><i class="bi bi-plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Absolutely. Our exclusive Couple Bliss Suite is available for bookings and includes
+                                    side-by-side treatment beds, a private Jacuzzi, champagne service, and a curated
+                                    aromatherapy ambience. Advance booking is required for suite reservations.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <h6>Are all your products organic and cruelty-free?</h6>
+                                <div class="faq-icon"><i class="bi bi-plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes. Every product used in our treatments is 100% organic, sustainably sourced, free
+                                    from parabens and synthetic fragrances, and certified cruelty-free. We are proud
+                                    partners of several ethical wellness brands and our entire retail range is available
+                                    for purchase in-spa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     FOOTER
+============================ -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="footer-logo">AURA WELLNESS</div>
+                    <div class="footer-tagline">Relax. Restore. Radiate.</div>
+                    <p class="footer-desc">Aura Wellness is your ultimate sanctuary for relaxation, healing, and
+                        rejuvenation. We bring together the finest therapists and purest products to create
+                        transformative wellness experiences.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                        <a href="#"><i class="bi bi-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="footer-heading">Quick Links</div>
+                    <a class="footer-link" href="#hero">Home</a>
+                    <a class="footer-link" href="#about">About Us</a>
+                    <a class="footer-link" href="#services">Services</a>
+                    <a class="footer-link" href="#offers">Packages</a>
+                    <a class="footer-link" href="#therapists">Therapists</a>
+                    <a class="footer-link" href="#gallery">Gallery</a>
+                    <a class="footer-link" href="#blog">Blog</a>
+                    <a class="footer-link" href="#booking">Contact</a>
+                </div>
+                <div class="col-lg-2 col-md-6 col-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="footer-heading">Our Services</div>
+                    <a class="footer-link" href="#services">Body Massage</a>
+                    <a class="footer-link" href="#services">Facial Treatment</a>
+                    <a class="footer-link" href="#services">Hot Stone Therapy</a>
+                    <a class="footer-link" href="#services">Aromatherapy</a>
+                    <a class="footer-link" href="#services">Skin Care</a>
+                    <a class="footer-link" href="#services">Sauna Relaxation</a>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="footer-heading">Contact Us</div>
+                    <div class="footer-contact-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span>213 Serenity Street, Wellness Quarter, Kolkata 700 001</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <span>+91 98765 43210</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>hello@aurawellness.spa</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="bi bi-clock-fill"></i>
+                        <span>Mon – Sat: 9:00 AM – 9:00 PM<br>Sunday: 10:00 AM – 7:00 PM</span>
+                    </div>
+                    <div class="mt-3 mb-2" style="font-size:0.75rem;color:rgba(250,246,240,0.45);letter-spacing:0.1em;">
+                        NEWSLETTER</div>
+                    <div class="input-group footer-newsletter">
+                        <input type="email" class="form-control" placeholder="Your email address" />
+                        <button class="btn"><i class="bi bi-send"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                    <p>© 2026 Aura Wellness. All rights reserved.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" style="font-size:0.75rem;color:rgba(250,246,240,0.35);text-decoration:none;">Privacy
+                            Policy</a>
+                        <a href="#" style="font-size:0.75rem;color:rgba(250,246,240,0.35);text-decoration:none;">Terms &
+                            Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // ============================
+        // INIT AOS
+        // ============================
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-cubic',
+            offset: 60
+        });
+
+        // ============================
+        // CUSTOM CURSOR
+        // ============================
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+        let mouseX = 0, mouseY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        (function animateFollower() {
+            followerX += (mouseX - followerX) * 0.12;
+            followerY += (mouseY - followerY) * 0.12;
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+            requestAnimationFrame(animateFollower);
+        })();
+
+        document.querySelectorAll('a, button, .service-card, .glass-card, .plan-card, .blog-card, .therapist-card, .offer-card, .gallery-item, .insta-item').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-grow'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-grow'));
+        });
+
+        // ============================
+        // NAVBAR SCROLL
+        // ============================
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+            document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
+        });
+
+        // ============================
+        // BACK TO TOP
+        // ============================
+        document.getElementById('backTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================
+        // FAQ ACCORDION
+        // ============================
+        function toggleFaq(el) {
+            const item = el.closest('.faq-item');
+            const answer = item.querySelector('.faq-answer');
+            const isOpen = item.classList.contains('active');
+
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('active');
+                i.querySelector('.faq-answer').classList.remove('open');
+            });
+
+            if (!isOpen) {
+                item.classList.add('active');
+                answer.classList.add('open');
+            }
+        }
+
+        // ============================
+        // COUNTER ANIMATION
+        // ============================
+        function animateCounter(el, target, suffix, duration) {
+            let start = 0;
+            const step = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += step;
+                if (start >= target) { start = target; clearInterval(timer); }
+                el.textContent = Math.floor(start).toLocaleString() + suffix;
+            }, 16);
+        }
+
+        // Observe hero badge counter
+        const counterEl = document.getElementById('clientCounter');
+        const obs = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) {
+                animateCounter(counterEl, 8500, '+', 2000);
+                obs.disconnect();
+            }
+        }, { threshold: 0.5 });
+        obs.observe(counterEl);
+
+        // ============================
+        // SMOOTH ACTIVE NAV LINK
+        // ============================
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(s => {
+                if (window.scrollY >= s.offsetTop - 120) current = s.id;
+            });
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.color = 'var(--gold)';
+                }
+            });
+        });
+
+        // ============================
+        // GIFT CARD VALUE SELECTOR
+        // ============================
+        document.querySelectorAll('#gift .btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('#gift .btn').forEach(b => {
+                    b.style.background = 'transparent';
+                    b.style.color = 'var(--gold-dark)';
+                    b.style.border = '1px solid var(--gold)';
+                });
+                this.style.background = 'var(--gold)';
+                this.style.color = 'var(--forest)';
+                this.style.border = 'none';
+                const val = this.textContent.trim();
+                if (val !== 'Custom') {
+                    document.querySelector('.gift-amount').textContent = val;
+                }
+            });
+        });
+
+        // ============================
+        // PARALLAX HERO SUBTLE
+        // ============================
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const orbs = document.querySelectorAll('.orb');
+            orbs.forEach((orb, i) => {
+                orb.style.transform = `translateY(${scrolled * (0.08 + i * 0.04)}px)`;
+            });
+        });
+    </script>
+</body>
+
+</html>
