@@ -1669,6 +1669,66 @@
             margin-top: 2rem;
         }
 
+        /* Gift card color variants */
+        .gift-card-visual.gift-card--2500 {
+            background: linear-gradient(135deg, #4a1b1b 0%, #7a2b2b 50%, #8b3b3b 100%);
+        }
+
+        .gift-card-visual.gift-card--5000 {
+            background: linear-gradient(135deg, #8b691b 0%, #c99b2a 50%, #e6b84d 100%);
+        }
+
+        .gift-card-visual.gift-card--10000 {
+            background: linear-gradient(135deg, #a64a00 0%, #c75a00 50%, #ff8c1a 100%);
+        }
+
+        .gift-info-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 8px 30px rgba(30, 45, 37, 0.06);
+            margin-bottom: 1rem;
+            color: var(--text-mid);
+            font-size: 0.92rem;
+        }
+
+        .gift-info-list {
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+            margin: 0.5rem 0 0;
+        }
+
+        .gift-info-list li {
+            list-style: none;
+            padding-left: 1.1rem;
+            position: relative;
+        }
+
+        .gift-info-list li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--gold-dark);
+            font-weight: 700;
+        }
+
+        /* gift amount buttons */
+        .gift-btn {
+            border-radius: 50px !important;
+            padding: 0.4rem 1rem !important;
+            font-size: 0.8rem !important;
+            border: 1px solid var(--gold) !important;
+            background: transparent !important;
+            color: var(--gold-dark) !important;
+        }
+
+        .gift-btn.active {
+            background: var(--gold) !important;
+            color: var(--forest) !important;
+            border: none !important;
+        }
+
         /* ============================
        BLOG
     ============================ */
@@ -1709,6 +1769,27 @@
 
         .blog-body {
             padding: 1.5rem;
+        }
+
+        /* Make blog cards equal height */
+        #blog .row>[class*="col-"] {
+            display: flex;
+        }
+
+        #blog .blog-card {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        #blog .blog-img {
+            flex: 0 0 auto;
+        }
+
+        #blog .blog-body {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .blog-category {
@@ -2273,8 +2354,7 @@
                 </div>
                 <div class="col-lg-6 hero-visual" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div class="hero-img-wrap">
-                        <img src="./images/hero-compressed.jpg"
-                            alt="Spa Treatment" loading="lazy" />
+                        <img src="./images/hero-compressed.jpg" alt="Spa Treatment" loading="lazy" />
                         <div class="hero-img-frame"></div>
                     </div>
                     <div class="hero-badge" data-aos="zoom-in" data-aos-delay="600">
@@ -2345,8 +2425,7 @@
                 <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
                     <div class="service-card hover-card">
                         <div class="service-card-img">
-                            <img src="./images/body_ma-compressed.jpg"
-                                alt="Body Massage" loading="lazy" />
+                            <img src="./images/body_ma-compressed.jpg" alt="Body Massage" loading="lazy" />
                             <div class="service-icon"><i class="bi bi-hand-index-thumb"></i></div>
                         </div>
                         <div class="service-body">
@@ -2360,8 +2439,7 @@
                 <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
                     <div class="service-card">
                         <div class="service-card-img">
-                            <img src="./images/aroma__.jpg"
-                                alt="Aromatherapy" loading="lazy" />
+                            <img src="./images/aroma__.jpg" alt="Aromatherapy" loading="lazy" />
                             <div class="service-icon"><i class="bi bi-droplet"></i></div>
                         </div>
                         <div class="service-body">
@@ -2375,8 +2453,7 @@
                 <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
                     <div class="service-card">
                         <div class="service-card-img">
-                            <img src="./images/face_tre-compressed.jpg"
-                                alt="Facial Treatment" loading="lazy" />
+                            <img src="./images/face_tre-compressed.jpg" alt="Facial Treatment" loading="lazy" />
                             <div class="service-icon"><i class="bi bi-stars"></i></div>
                         </div>
                         <div class="service-body">
@@ -2390,8 +2467,7 @@
                 <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
                     <div class="service-card">
                         <div class="service-card-img">
-                            <img src="./images/hot_sto-compressed.jpg"
-                                alt="Hot Stone" loading="lazy" />
+                            <img src="./images/hot_sto-compressed.jpg" alt="Hot Stone" loading="lazy" />
                             <div class="service-icon"><i class="bi bi-gem"></i></div>
                         </div>
                         <div class="service-body">
@@ -2405,8 +2481,7 @@
                 <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
                     <div class="service-card">
                         <div class="service-card-img">
-                            <img src="./images/skn_care-compressed.jpg"
-                                alt="Skin Care" loading="lazy" />
+                            <img src="./images/skn_care-compressed.jpg" alt="Skin Care" loading="lazy" />
                             <div class="service-icon"><i class="bi bi-flower1"></i></div>
                         </div>
                         <div class="service-body">
@@ -2420,8 +2495,7 @@
                 <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
                     <div class="service-card">
                         <div class="service-card-img">
-                            <img src="./images/relax-compressed.jpg"
-                                alt="Sauna" loading="lazy" />
+                            <img src="./images/relax-compressed.jpg" alt="Sauna" loading="lazy" />
                             <div class="service-icon"><i class="bi bi-fire"></i></div>
                         </div>
                         <div class="service-body">
@@ -2449,12 +2523,10 @@
                             <div class="lbl">Years of<br>Excellence</div>
                         </div>
                         <div class="about-img-main">
-                            <img src="./images/about_b-compressed.jpg"
-                                alt="Spa Interior" loading="lazy" />
+                            <img src="./images/about_b-compressed.jpg" alt="Spa Interior" loading="lazy" />
                         </div>
                         <div class="about-img-float" data-aos="fade-up" data-aos-delay="600">
-                            <img src="./images/about-compressed.jpg"
-                                alt="Treatment" loading="lazy" />
+                            <img src="./images/about-compressed.jpg" alt="Treatment" loading="lazy" />
                         </div>
                     </div>
                 </div>
@@ -2515,8 +2587,7 @@
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
                     <div class="offer-card">
-                        <img src="./images/weekend.jpg"
-                            alt="Weekend Refresh" loading="lazy" />
+                        <img src="./images/weekend.jpg" alt="Weekend Refresh" loading="lazy" />
                         <div class="offer-overlay"></div>
                         <div class="offer-content">
                             <span class="offer-badge">Upto 20% Off</span>
@@ -2529,8 +2600,7 @@
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="120">
                     <div class="offer-card">
-                        <img src="./images/couple.jpg"
-                            alt="Couple Bliss" loading="lazy" />
+                        <img src="./images/couple.jpg" alt="Couple Bliss" loading="lazy" />
                         <div class="offer-overlay"></div>
                         <div class="offer-content">
                             <span class="offer-badge">Upto 25% Off</span>
@@ -2543,8 +2613,7 @@
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="240">
                     <div class="offer-card">
-                        <img src="./images/new_cli.jpg"
-                            alt="New Client" loading="lazy" />
+                        <img src="./images/new_cli.jpg" alt="New Client" loading="lazy" />
                         <div class="offer-overlay"></div>
                         <div class="offer-content">
                             <span class="offer-badge">Flat 15% Off</span>
@@ -2728,174 +2797,108 @@
         <div class="carousel-track-wrap">
             <div class="carousel-track" id="track1">
                 <!-- 8 images duplicated for seamless loop -->
-                <div class="carousel-item-custom"><img
-                        src="./images/ran1.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran1.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran4.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran4.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran3.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran3.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran9.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran9.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran5.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran5.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran6.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran6.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran7.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran7.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran8.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran8.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
                 <!-- duplicates -->
-                <div class="carousel-item-custom"><img
-                        src="./images/ran10.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran10.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/about-compressed.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/about-compressed.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/hero-compressed.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/hero-compressed.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/face_tre-compressed.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/face_tre-compressed.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran1.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran1.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran10.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran10.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran11.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran11.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran12.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran12.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
             </div>
         </div>
         <div class="carousel-track-wrap mt-3">
             <div class="carousel-track carousel-track-2" id="track2">
-                <div class="carousel-item-custom"><img
-                        src="./images/ran14-compressed.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran14-compressed.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran12.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran12.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran11.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran11.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran8.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran8.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran9.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran9.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran10.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran10.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran11.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran11.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran14-compressed.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran14-compressed.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran3.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran3.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran11.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran11.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran14-compressed.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran14-compressed.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran12.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran12.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran5.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran5.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran11.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran11.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran10.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran10.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran4.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran4.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
-                <div class="carousel-item-custom"><img
-                        src="./images/ran13.jpg" alt=""
-                        loading="lazy" />
+                <div class="carousel-item-custom"><img src="./images/ran13.jpg" alt="" loading="lazy" />
                     <div class="overlay"></div>
                 </div>
             </div>
@@ -2919,8 +2922,8 @@
                         <p class="testimonial-text">"The best spa experience I have ever had. The ambience transports
                             you completely. I left feeling like an entirely new person."</p>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/women/8.jpg"
-                                alt="Emily" class="testimonial-avatar" loading="lazy" />
+                            <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Emily"
+                                class="testimonial-avatar" loading="lazy" />
                             <div>
                                 <div class="testimonial-name">Neha Khan</div>
                                 <div class="testimonial-loc">Kolkata, West Bengal</div>
@@ -2983,28 +2986,23 @@
             </div>
             <div class="gallery-grid" data-aos="fade-up" data-aos-duration="1000">
                 <div class="gallery-item g1">
-                    <img src="./images/new_cli.jpg" alt="Gallery"
-                        loading="lazy" />
+                    <img src="./images/new_cli.jpg" alt="Gallery" loading="lazy" />
                     <div class="gallery-zoom"><i class="bi bi-zoom-in"></i></div>
                 </div>
                 <div class="gallery-item g2">
-                    <img src="./images/hot_sto-compressed.jpg" alt="Gallery"
-                        loading="lazy" />
+                    <img src="./images/hot_sto-compressed.jpg" alt="Gallery" loading="lazy" />
                     <div class="gallery-zoom"><i class="bi bi-zoom-in"></i></div>
                 </div>
                 <div class="gallery-item g3">
-                    <img src="./images/weekend.jpg" alt="Gallery"
-                        loading="lazy" />
+                    <img src="./images/weekend.jpg" alt="Gallery" loading="lazy" />
                     <div class="gallery-zoom"><i class="bi bi-zoom-in"></i></div>
                 </div>
                 <div class="gallery-item g4">
-                    <img src="./images/hero-compressed.jpg" alt="Gallery"
-                        loading="lazy" />
+                    <img src="./images/hero-compressed.jpg" alt="Gallery" loading="lazy" />
                     <div class="gallery-zoom"><i class="bi bi-zoom-in"></i></div>
                 </div>
                 <div class="gallery-item g5">
-                    <img src="./images/face_tre-compressed.jpg" alt="Gallery"
-                        loading="lazy" />
+                    <img src="./images/face_tre-compressed.jpg" alt="Gallery" loading="lazy" />
                     <div class="gallery-zoom"><i class="bi bi-zoom-in"></i></div>
                 </div>
             </div>
@@ -3094,9 +3092,7 @@
         </div>
     </section>
 
-    <!-- ============================
-     GIFT CARD
-============================ -->
+    <!-- ============================ GIFT CARD ============================ -->
     <section id="gift">
         <div class="container">
             <div class="row align-items-center g-5">
@@ -3118,19 +3114,24 @@
                         beautifully crafted gift cards are available in any denomination and delivered instantly by
                         email or as a premium physical card.
                     </p>
-                    <div class="d-flex flex-wrap gap-2 mb-3">
-                        <button class="btn btn-sm"
-                            style="border:1px solid var(--gold);color:var(--gold-dark);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;background:transparent;">₹1,000</button>
-                        <button class="btn btn-sm"
-                            style="border:1px solid var(--gold);color:var(--gold-dark);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;background:transparent;">₹2,500</button>
-                        <button class="btn btn-sm"
-                            style="background:var(--gold);color:var(--forest);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;border:none;">₹5,000</button>
-                        <button class="btn btn-sm"
-                            style="border:1px solid var(--gold);color:var(--gold-dark);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;background:transparent;">₹10,000</button>
-                        <button class="btn btn-sm"
-                            style="border:1px solid var(--gold);color:var(--gold-dark);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;background:transparent;">Custom</button>
+                    <div class="gift-info-card">
+                        <strong>What's included</strong>
+                        <ul class="gift-info-list">
+                            <li>Redeemable for any service across our spa locations</li>
+                            <li>Valid 12 months from date of purchase</li>
+                            <li>Instant digital delivery or premium physical card</li>
+                            <li>Comes with a personalised message option</li>
+                        </ul>
                     </div>
-                    <a href="#" class="btn-primary-gold">
+
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <button class="btn btn-sm gift-btn" data-amount="1000">₹1,000</button>
+                        <button class="btn btn-sm gift-btn" data-amount="2500">₹2,500</button>
+                        <button class="btn btn-sm gift-btn" data-amount="5000">₹5,000</button>
+                        <button class="btn btn-sm gift-btn active" data-amount="10000">₹10,000</button>
+                    </div>
+
+                    <a href="#" class="btn-primary-gold" id="purchaseGift">
                         <i class="bi bi-gift"></i>
                         <span>Purchase Gift Card</span>
                     </a>
@@ -3153,8 +3154,7 @@
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
                     <div class="blog-card">
                         <div class="blog-img">
-                            <img src="./images/body_ma-compressed.jpg" alt="Blog"
-                                loading="lazy" />
+                            <img src="./images/body_ma-compressed.jpg" alt="Blog" loading="lazy" />
                         </div>
                         <div class="blog-body">
                             <div class="blog-category">Massage Therapy</div>
@@ -3172,8 +3172,7 @@
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="120">
                     <div class="blog-card">
                         <div class="blog-img">
-                            <img src="./images/aroma__.jpg"
-                                alt="Blog" loading="lazy" />
+                            <img src="./images/aroma__.jpg" alt="Blog" loading="lazy" />
                         </div>
                         <div class="blog-body">
                             <div class="blog-category">Aromatherapy</div>
@@ -3191,8 +3190,7 @@
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="240">
                     <div class="blog-card">
                         <div class="blog-img">
-                            <img src="./images/skn_care-compressed.jpg"
-                                alt="Blog" loading="lazy" />
+                            <img src="./images/skn_care-compressed.jpg" alt="Blog" loading="lazy" />
                         </div>
                         <div class="blog-body">
                             <div class="blog-category">Self Care</div>
@@ -3300,33 +3298,27 @@
             </div>
             <div class="insta-grid" data-aos="fade-up" data-aos-delay="100">
                 <div class="insta-item">
-                    <img src="./images/ran8.jpg" alt="Instagram"
-                        loading="lazy" />
+                    <img src="./images/ran8.jpg" alt="Instagram" loading="lazy" />
                     <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
                 </div>
                 <div class="insta-item">
-                    <img src="./images/ran12.jpg" alt="Instagram"
-                        loading="lazy" />
+                    <img src="./images/ran12.jpg" alt="Instagram" loading="lazy" />
                     <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
                 </div>
                 <div class="insta-item">
-                    <img src="./images/ran11.jpg" alt="Instagram"
-                        loading="lazy" />
+                    <img src="./images/ran11.jpg" alt="Instagram" loading="lazy" />
                     <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
                 </div>
                 <div class="insta-item">
-                    <img src="./images/ran5.jpg" alt="Instagram"
-                        loading="lazy" />
+                    <img src="./images/ran5.jpg" alt="Instagram" loading="lazy" />
                     <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
                 </div>
                 <div class="insta-item">
-                    <img src="./images/ran4.jpg" alt="Instagram"
-                        loading="lazy" />
+                    <img src="./images/ran4.jpg" alt="Instagram" loading="lazy" />
                     <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
                 </div>
                 <div class="insta-item">
-                    <img src="./images/ran1.jpg" alt="Instagram"
-                        loading="lazy" />
+                    <img src="./images/ran1.jpg" alt="Instagram" loading="lazy" />
                     <div class="insta-item-overlay"><i class="bi bi-instagram"></i></div>
                 </div>
             </div>
@@ -3632,22 +3624,44 @@
         // ============================
         // GIFT CARD VALUE SELECTOR
         // ============================
-        document.querySelectorAll('#gift .btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                document.querySelectorAll('#gift .btn').forEach(b => {
-                    b.style.background = 'transparent';
-                    b.style.color = 'var(--gold-dark)';
-                    b.style.border = '1px solid var(--gold)';
-                });
-                this.style.background = 'var(--gold)';
-                this.style.color = 'var(--forest)';
-                this.style.border = 'none';
-                const val = this.textContent.trim();
-                if (val !== 'Custom') {
-                    document.querySelector('.gift-amount').textContent = val;
+        (function () {
+            const giftBtns = document.querySelectorAll('#gift .gift-btn');
+            const giftVisual = document.querySelector('.gift-card-visual');
+            const giftAmountEl = document.querySelector('.gift-amount');
+            const purchaseBtn = document.getElementById('purchaseGift');
+
+            function setGift(amount, formatted, btn) {
+                giftBtns.forEach(b => b.classList.remove('active'));
+                if (btn) btn.classList.add('active');
+
+                if (amount && amount !== 'custom') {
+                    giftAmountEl.textContent = formatted;
                 }
+
+                giftVisual.classList.remove('gift-card--1000', 'gift-card--2500', 'gift-card--5000', 'gift-card--10000');
+                if (amount === '2500') giftVisual.classList.add('gift-card--2500');
+                else if (amount === '5000') giftVisual.classList.add('gift-card--5000');
+                else if (amount === '10000') giftVisual.classList.add('gift-card--10000');
+                else giftVisual.classList.add('gift-card--1000');
+
+                if (purchaseBtn) {
+                    purchaseBtn.dataset.amount = amount;
+                    purchaseBtn.querySelector('span').textContent = amount === 'custom' ? 'Purchase Gift Card' : `Purchase ${formatted} Gift Card`;
+                }
+            }
+
+            giftBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const amount = this.dataset.amount;
+                    const formatted = this.textContent.trim();
+                    setGift(amount, formatted, this);
+                });
             });
-        });
+
+            // init - find active button or default
+            let initBtn = document.querySelector('#gift .gift-btn.active') || document.querySelector('#gift .gift-btn[data-amount="5000"]') || document.querySelector('#gift .gift-btn');
+            if (initBtn) setGift(initBtn.dataset.amount, initBtn.textContent.trim(), initBtn);
+        })();
 
         // ============================
         // PARALLAX HERO SUBTLE
